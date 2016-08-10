@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "jshint.enable": true,
+    "jshint.config": "/home/sel/.bin/.jshintrc",
+    "editor.renderWhitespace": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.trimAutoWhitespace": true
+}
