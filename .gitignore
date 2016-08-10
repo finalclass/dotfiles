@@ -7,4 +7,5 @@
 !.config/i3
 !.config/i3/config
 !.bashrc
-!.emacs/*
+!.emacs.d
+!.emacs.d/*
