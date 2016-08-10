@@ -1,16 +1,6 @@
 // Place your key bindings in this file to overwrite the defaults
 [
     {
-        "key": "ctrl+e",
-        "command": "cursorEnd",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+a",
-        "command": "cursorHome",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "alt+left",
         "command": "workbench.action.previousEditor"
     },

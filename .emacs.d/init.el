@@ -218,4 +218,5 @@
 (global-set-key (kbd "C-c m c") 'coffee-mode)
 (global-set-key (kbd "C-c m w") 'web-mode)
 
-
+(global-set-key (kbd "<home>") 'smart-beginning-of-line)
+(global-set-key (kbd "<end>") 'move-end-of-line)
