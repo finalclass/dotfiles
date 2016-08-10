@@ -24,5 +24,6 @@
 !.emacs.d/snippets/js-mode/*
 !.emacs.d/snippets/web-mode
 !.emacs.d/snippets/web-mode/*
+!.emacs.d/snippets/**/*
 
 
