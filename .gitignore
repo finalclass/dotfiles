@@ -9,4 +9,9 @@
 !.bashrc
 !.emacs.d
 !.emacs.d/*
-!.emacs.d/**/*
+!.emacs.d/lib
+!.emacs.d/lib/*
+!.emacs.d/snippets
+!.emacs.d/snippets/*
+
+
