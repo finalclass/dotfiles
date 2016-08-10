@@ -1,0 +1,21 @@
+{
+  "name": "bin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fc-destroy-event.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "cradle": "^0.7.1",
+    "exec-sync": "^0.1.6",
+    "jshint": "^2.9.2",
+    "nano": "^6.1.5",
+    "potem": "^3.0.1",
+    "request": "^2.67.0",
+    "underscore": "^1.8.3"
+  }
+}
