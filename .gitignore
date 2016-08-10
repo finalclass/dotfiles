@@ -3,3 +3,4 @@
 !.bin
 !.bin/*
 .bin/node_modules
+!.config/i3/config
