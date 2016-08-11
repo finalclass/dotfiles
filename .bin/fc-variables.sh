@@ -1,9 +1,7 @@
 #!/bin/bash
 
-export EID_TEST132="04e9978b5f8839d5942a0fdb90184bf3"
-export EID_TEST201="f59152f0e34b74746259fb2dab025833"
-export EID_TEST205="d55c5bc85ccbebadae6b5526f0000494"
-export EID=$EID_TEST205
+export EID_TEST207="492471b8b495156d440f4c99d0000069"
+export EID=$EID_TEST207
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"
 export WEBAPP_ENABLED=true
