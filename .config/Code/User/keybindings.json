@@ -6,8 +6,7 @@
     },
     {
         "key": "alt+right",
-        "command": "cursorWordStartRight",
-        "when": "editorTextFocus"
+        "command": "workbench.action.nextEditor",
     },
     {
         "key": "alt+up",
@@ -15,12 +14,12 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+down",
+        "key": "alt+down",
         "command": "scrollLineDown",
         "when": "editorTextFocus"
     },
     {
-        "key": "ctrl+c ctrl+x ctrl+x",
+        "key": "f4",
         "command": "fc.deploy"
     }
 ]
