@@ -97,10 +97,10 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $wsTerminals "0:x: Terminals"
-set $wsCode "0:z: Code"
-set $wsBrowsers "1: Browsers"
-set $ws2 "2:"
+set $wsTerminals "0:x: Terminals 1"
+set $wsCode "0:z: Code "
+set $wsBrowsers "1: Browsers "
+set $ws2 "2: "
 set $wsEmacs "3: Emacs"
 set $ws5 "5:"
 set $ws4 "4:"
@@ -189,7 +189,9 @@ bar {
 
 # exec_always feh --bg-scale ~/Media/wallup-27135.jpg
 
-exec_always xrandr --dpi 220 --output HDMI-2 --off --output HDMI-1 --off --output DP-1 --off --output eDP-1 --mode 3200x1800 --pos 0x0 --rotate normal --output DP-2 --off
+exec_always xrandr --dpi 220 --output HDMI-2 --off --output HDMI-1 --off --output DP-1 --off --output eDP-1 --primary --mode 3200x1800 --pos 0x0 --rotate normal --output DP-2 --off
+
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,gpg,secrets
 
 exec code
 exec terminator
