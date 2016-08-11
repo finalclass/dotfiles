@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias skype="apulse32 skype"
 
 source ~/.bin/git-completion.bash
 source ~/.bin/git-prompt.sh
