@@ -102,8 +102,8 @@ set $wsCode "0:z: Code "
 set $wsBrowsers "1: Browsers "
 set $ws2 "2: "
 set $wsEmacs "3: Emacs"
+set $ws4 "4:"
 set $ws5 "5:"
-set $ws4 "4:"
 set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
@@ -190,8 +190,6 @@ bar {
 # exec_always feh --bg-scale ~/Media/wallup-27135.jpg
 
 exec_always xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 3200x1800 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --off --output DP2 --off
-
-exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,gpg,secrets
 
 exec code
 exec terminator
