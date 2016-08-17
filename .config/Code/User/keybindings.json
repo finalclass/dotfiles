@@ -6,7 +6,7 @@
     },
     {
         "key": "alt+right",
-        "command": "workbench.action.nextEditor",
+        "command": "workbench.action.nextEditor"
     },
     {
         "key": "alt+up",
