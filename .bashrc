@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias skype="apulse32 skype"
+alias skype="skype"
 alias dc="docker-compose"
 
 source ~/.bin/git-completion.bash
