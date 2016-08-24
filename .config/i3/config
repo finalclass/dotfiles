@@ -197,8 +197,8 @@ bar {
 # exec_always xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 3200x1800 --pos 0x0 --rotate normal --output DP1 --off --output HDMI2 --off --output HDMI1 --off --output DP2 --off
 
 exec_always xrandr \
---output eDP1 --scale 1x1 --mode 3200x1800 --pos 312x2160 --rotate normal \
---output DP1 --scale 2x2 --primary --mode 1920x1080 --pos 0x0 --rotate normal \
+--output eDP1 --scale 1x1 --primary --mode 3200x1800 --pos 312x2160 --rotate normal \
+--output DP1 --scale 2x2 --mode 1920x1080 --pos 0x0 --rotate normal \
 --output HDMI2 --off \
 --output HDMI1 --off \
 --output VIRTUAL1 --off \
