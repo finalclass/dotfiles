@@ -14,6 +14,7 @@
     "exec-sync": "^0.1.6",
     "jshint": "^2.9.2",
     "nano": "^6.1.5",
+    "optimist": "^0.6.1",
     "potem": "^3.0.1",
     "request": "^2.67.0",
     "underscore": "^1.8.3"
