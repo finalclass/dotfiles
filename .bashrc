@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias grep='grep --color'
 alias skype="skype"
 alias dc="docker-compose"
 
@@ -16,7 +17,7 @@ source ~/.bin/fc-variables.sh
 export NVM_DIR="/home/sel/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export PATH=$PATH:~/.bin:~/Documents/go/bin
+export PATH=$PATH:~/.bin:~/Documents/go/bin:~/AppImages
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
 

@@ -4,5 +4,7 @@
     "jshint.config": "/home/sel/.bin/.jshintrc",
     "editor.renderWhitespace": false,
     "files.trimTrailingWhitespace": true,
-    "editor.trimAutoWhitespace": true
+    "editor.trimAutoWhitespace": true,
+    "editor.wrappingColumn": 0,
+    "editor.autoClosingBrackets": false
 }

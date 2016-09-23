@@ -15,3 +15,5 @@ export EDITOR=mcedit
 # export CLOUD_EID=$STG_EID
 # export CLOUD_DS=$STG_DS
 export PATH=/Users/sel/Documents/go/go_appengine:$PATH
+export DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZXh0IjoiZmluYWxjbGFzcyIsInR5cGUiOiJ1c2VyIn0.FKORnY3OIucRoVgdIJBXV-00v2rL0NPOopWlvhZqCgg
+export DRONE_HOST=http://localhost:8000

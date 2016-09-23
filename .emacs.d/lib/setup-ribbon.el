@@ -3,14 +3,14 @@
   (setq ribbon-windows ())
   (setq ribbon-buffers-hash (make-hash-table))
   (setq ribbon-buffer-no 0)
-  
+
   ;;populate ribbon-windows and ribbon-buffers-hash
   (add-to-list 'ribbon-windows (selected-window))
   (puthash 0 (window-buffer (nth 0 ribbon-windows)) ribbon-buffers-hash)
-  
+
   (add-to-list 'ribbon-windows (next-window (selected-window)))
   (puthash 1 (window-buffer (nth 1 ribbon-windows)) ribbon-buffers-hash)
-  
+
   (add-to-list 'ribbon-windows (next-window (next-window (selected-window))))
   (puthash 2 (window-buffer (nth 2 ribbon-windows)) ribbon-buffers-hash))
 
@@ -53,7 +53,7 @@
   (concat
    "(" (number-to-string buffer-no) ")"
    (buffer-name (gethash buffer-no ribbon-buffers-hash))))
-  
+
 (defun ribbon-describe-buffers ()
   (message (concat
             (ribbon-describe-buffer (+ ribbon-buffer-no 2)) "   "
@@ -73,7 +73,7 @@
 (defun ribbon-select-left-window ()
   (if (ribbon-prev-window)
       (select-window (ribbon-prev-window))))
-  
+
 (defun ribbon-select-right-window ()
   (if (ribbon-next-window)
       (select-window (ribbon-next-window))))
