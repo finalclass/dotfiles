@@ -5,7 +5,7 @@
   -1))
 
 (defun fc-init-command (cmd)
-  (concat "source ~/bin/fc-variables.sh && " cmd))
+  (concat "source ~/.bin/fc-variables.sh && " cmd))
 
 (defun fc-deploy ()
   (interactive)

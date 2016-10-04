@@ -3,7 +3,8 @@
 
 					;GUI config
 (tool-bar-mode -1)
-(require 'darcula-theme)
+;; (require 'darcula-theme)
+(require 'leuven-theme)
 (set-frame-font "Inconsolata-12")
 (setq-default line-spacing 4)
 
