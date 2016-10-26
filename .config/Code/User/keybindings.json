@@ -21,5 +21,21 @@
     {
         "key": "f4",
         "command": "fc.deploy"
+    },
+    {
+        "key": "alt+1",
+        "command": "workbench.action.focusFirstEditorGroup"
+    },
+    {
+        "key": "alt+2",
+        "command": "workbench.action.focusSecondEditorGroup"
+    },
+    {
+        "key": "alt+0",
+        "command": "workbench.action.focusSideBar"
+    },
+    {
+        "key": "alt+3",
+        "command": "workbench.action.focusThirdEditorGroup"
     }
 ]

@@ -9,7 +9,9 @@ if (!EID) {
 
 var _ = require('underscore');
 var cradle = require('cradle');
-var db = new cradle.Connection('http://admin:rm@localhost').database('dbnode-ev-' + EID);
+var db = new cradle.Connection('http://localhost', 80, {
+    auth: {username: 'admin', password: 'rm'}
+}).database('dbnode-ev-' + EID);
 var type = process.argv[2];
 var max = process.argv[3];
 var nofDocs = 0;
@@ -55,10 +57,10 @@ function streamByType(db, type, onDocs, done) {
             skip: offset,
 	    include_docs: true
         }, function (err, rows) {
-	    if (err) {
-	        return callback(err);
+            if (err) {
+                return callback(err);
 	    }
-	    var docs = _.map(rows, function (row) {
+            var docs = _.map(rows, function (row) {
 	        return row.doc;
 	    });
             var len = docs.length;
@@ -80,7 +82,7 @@ function streamByType(db, type, onDocs, done) {
         });
     }
 
-    return fetch(0, function () {
-        done();
+    return fetch(0, function (err) {
+        done(err);
     });
 }

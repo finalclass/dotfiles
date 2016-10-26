@@ -28,3 +28,6 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval $(<~/.ssh-agent-thing)
 fi
 ssh-add -l >/dev/null || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+
+source ~./.private.sh
+alias docker-cloud="docker run -it -e DOCKERCLOUD_USER=$DOCKERCLOUD_USER -e DOCKERCLOUD_PASS=$DOCKERCLOUD_PASS --rm dockercloud/cli"

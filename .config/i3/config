@@ -114,7 +114,7 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $wsTerminals "0:x: Terminals 1"
+set $wsTerminals "0:x: Terminals "
 set $wsCode "0:z: Code "
 set $wsBrowsers "1: Browsers "
 set $ws2 "2: "

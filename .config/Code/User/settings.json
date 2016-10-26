@@ -2,10 +2,12 @@
 {
     "jshint.enable": true,
     "jshint.config": "/home/sel/.bin/.jshintrc",
-    "editor.renderWhitespace": false,
+    "editor.renderWhitespace": "none",
     "files.trimTrailingWhitespace": true,
     "editor.trimAutoWhitespace": true,
     "editor.wrappingColumn": 0,
     "editor.autoClosingBrackets": false,
-    "typescript.tsdk": "/home/sel/.nvm/versions/node/v6.5.0/lib/node_modules/typescript/lib"
+    // "workbench.editor.enablePreviewFromQuickOpen": false,
+    // "workbench.editor.enablePreview": false,
+    "html.format.wrapLineLength": 120,
 }
