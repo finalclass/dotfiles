@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export EID=ebd51b42c91476a76ce07c87c5000e56
+# export EID=ebd51b42c91476a76ce07c87c5000e56
+export EID=ef1b0e162f5e3353155febbbf6000ba9
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"
 export WEBAPP_ENABLED=true
