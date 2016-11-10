@@ -56,6 +56,8 @@
 (require 'setup-kbd-projects)
 (require 'grep-in-project)
 
+(global-unset-key (kbd "C-z"))
+
 (defun prelude-google ()
   "Googles a query or region if any."
   (interactive)
