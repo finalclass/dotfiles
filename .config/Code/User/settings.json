@@ -10,4 +10,7 @@
     // "workbench.editor.enablePreviewFromQuickOpen": false,
     // "workbench.editor.enablePreview": false,
     "html.format.wrapLineLength": 120,
+    "explorer.autoReveal": false,
+    "files.autoSave": "onFocusChange",
+    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
 }

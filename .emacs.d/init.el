@@ -99,7 +99,7 @@
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (doremi yaxception yasnippet web-mode tide tern smartparens smart-mode-line-powerline-theme restclient paredit multiple-cursors markdown-mode magit log4e leuven-theme json-mode js2-mode jade-mode ido-vertical-mode ido-at-point flymake-coffee flx-ido fiplr exec-path-from-shell emmet-mode doremi-frm doremi-cmd dired+ darcula-theme coffee-mode auto-complete))))
+    (company doremi yaxception yasnippet web-mode tide tern smartparens smart-mode-line-powerline-theme restclient paredit multiple-cursors markdown-mode magit log4e leuven-theme json-mode js2-mode jade-mode ido-vertical-mode ido-at-point flymake-coffee flx-ido fiplr exec-path-from-shell emmet-mode doremi-frm doremi-cmd dired+ darcula-theme coffee-mode auto-complete))))
 
 (defadvice pop-to-buffer (before cancel-other-window first)
   (ad-set-arg 1 nil))

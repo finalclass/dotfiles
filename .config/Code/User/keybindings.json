@@ -37,5 +37,9 @@
     {
         "key": "alt+3",
         "command": "workbench.action.focusThirdEditorGroup"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "workbench.action.git.input-commit"
     }
 ]
