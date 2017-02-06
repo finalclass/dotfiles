@@ -26,3 +26,5 @@
 !.emacs.d/lib/*
 !.emacs.d/snippets
 !.emacs.d/snippets/**/*
+
+!.spacemacs
