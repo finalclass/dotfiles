@@ -3,9 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        forward-kill-word-or-delim
         mwim-end-of-line-or-code
         org-yank
         select-window-2
+        spacemacs/backward-kill-word-or-region
         typescript-insert-and-indent
         ))
 

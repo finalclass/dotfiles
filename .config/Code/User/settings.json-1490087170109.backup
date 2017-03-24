@@ -1,0 +1,16 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "jshint.enable": true,
+    "jshint.config": "/home/sel/.bin/.jshintrc",
+    "editor.renderWhitespace": "none",
+    "files.trimTrailingWhitespace": true,
+    "editor.trimAutoWhitespace": true,
+    "editor.wrappingColumn": 0,
+    "editor.autoClosingBrackets": false,
+    // "workbench.editor.enablePreviewFromQuickOpen": false,
+    // "workbench.editor.enablePreview": false,
+    "html.format.wrapLineLength": 120,
+    "explorer.autoReveal": false,
+    "files.autoSave": "onFocusChange",
+    "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+}

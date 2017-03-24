@@ -1,11 +1,45 @@
 // Place your key bindings in this file to overwrite the defaults
 [
     {
-        "key": "alt+left",
+        "key": "ctrl+,",
+        "command": "extension.setMark",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+m ;",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+m f",
+        "command": "editor.action.formatDocument",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+.",
+        "command": "expand_region",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+,",
+        "command": "undo_expand_region",
+        "when": "editorTextFocus && editorHasSelection"
+    },
+    {
+        "key": "ctrl+x",
+        "command": "editor.action.clipboardCutAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+m o o",
+        "command": "extension.dired.open"
+    },
+    {
+        "key": "alt+[",
         "command": "workbench.action.previousEditor"
     },
     {
-        "key": "alt+right",
+        "key": "alt+]",
         "command": "workbench.action.nextEditor"
     },
     {
