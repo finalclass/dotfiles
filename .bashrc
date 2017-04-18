@@ -17,7 +17,7 @@ source ~/.bin/fc-variables.sh
 export NVM_DIR="/home/sel/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export PATH=$PATH:~/.bin:~/Documents/go/bin:~/AppImages
+export PATH=$PATH:~/.bin:~/Documents/go/bin:~/AppImages:~/.cache/rebar3/bin
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
 
@@ -88,3 +88,7 @@ elif type compctl &>/dev/null; then
   compctl -K _npm_completion npm
 fi
 ###-end-npm-completion-###
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/sel/.sdkman"
+[[ -s "/home/sel/.sdkman/bin/sdkman-init.sh" ]] && source "/home/sel/.sdkman/bin/sdkman-init.sh"

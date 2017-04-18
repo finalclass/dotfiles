@@ -28,3 +28,4 @@
 !.emacs.d/snippets/**/*
 
 !.spacemacs
+!.inputrc

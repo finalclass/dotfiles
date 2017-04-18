@@ -13,13 +13,20 @@
     "files.autoSave": "onFocusChange",
     "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
     "workbench.iconTheme": "vs-minimal",
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "Default Light+",
+    "window.zoomLevel": 1,
     "rest-client.environmentVariables": {
+        "pentest1-spotme": {
+            "bstgCookie": "mp_44879cec8b19cf0d50996978c4c59e23_mixpanel=%7B%22distinct_id%22%3A%20%2215b158f12c679c-0ef295663751a6-317f0158-109912-15b158f12c7d65%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22eid%22%3A%20%221bfc4512fb64d0dd41770cdcbd0be1d0%22%2C%22pid%22%3A%20%221bfc4512fb64d0dd41770cdcbd0e3bfe%22%2C%22env%22%3A%20%22web%22%2C%22branding%22%3A%20%22pentest%22%7D; webapp=zs%252Fc8Yr4aF5RVO%252F2gs7nBuKFQEA%253D*1490890300147*82Qa3VOY4nyjG1rB1KAqOJDYCtz%252BsXsllIaQFlHXrtljdCaSM5kou51SgkZcqIf2iwotGHHkTFuRSCWO6F%252F0exaxvUjh%252FZyyCzPkSr7V0k%252Fgj6EXX%252BPhFPtdEtDbo%252Bt3oC3Lf%252B77nfhw8co%252F8npkz%252FVBD3rQMUuTjqHK8b76bxjQAkmMutcByPdO82dPrd6VM7KRbtdjVLxRPrdXVhRYsdSy%252F7EUUQUcivcRR1CKgiblFmra%252BZjscbCGIiHWlFCZ0q6MGmprUgG61%252BFIeF6aHphWsI3YeMrbZ%252F9tK91dOikt4JHJ0IA3BI5%252Bo8GdR1%252BJ; bstg_session=4ZKFscPtoEfGIrr5a7rGL4ebI3U%253D*1490890300148*HykHhZssO9ClUObk0AJolxHNQgvDtf7cIohMun43yaek9YhIu6i4qIKobQw16KGiAPDfaLTDezQE%252BluTzBBk%252F0FEOZ4GiBUaocKBbbwlfO2ocAvG2%252FSkh10EKtACOTeKWt%252BMLbePCEUDNK%252B920mCoumXzbVGSor6ihYm%252FJB6pznr0NxRSWf6IMd3ICoNdekYAlbMnuZMwdp4txuktvjyjB%252Fh%252FCQT8vLezyhOC1us600%253D"
+        },
         "local-spotme": {
             "basicAuth": "Basic YWRtaW46cm0=",
+            "webappCookie": "mp_44879cec8b19cf0d50996978c4c59e23_mixpanel=%7B%22distinct_id%22%3A%20%22158f78fb63412d-0bd71f7f9b4253-3072065b-17e9d7-158f78fb63511%22%2C%22env%22%3A%20%22web%22%2C%22%24initial_referrer%22%3A%20%22http%3A%2F%2Fwebapp.4pax.com%3A8181%2F%22%2C%22%24initial_referring_domain%22%3A%20%22webapp.4pax.com%3A8181%22%2C%22eid%22%3A%20%220b2a5c2a203f9ba64bbb75d141036634%22%2C%22pid%22%3A%20%22ba804e18c3360430e8c48643d7008359%22%2C%22branding%22%3A%20null%7D; mp_mixpanel__c=0; webapp=8zB40F7janyP6eyUzSJ7RxhPPZU%253D*1490351660268*82Qa3VOY4nyjG1rB1KAqOBq4GtFrV4bU7CrCZINaB%252BrFPJbK1SSGxjSbStSs687RtxtWQCK1bV2OGYw7%252B9e9SRLhwuJEddz4VS9UBQGu%252FZy2e%252ByeUbV9j1xhbdjU1XUHol6zCU61ggWc0BGECvqsed%252FVeJAPx5AtluQyoNxREzI9wiwVeRrzO4uI2fMuZKpLytA%252B2%252Fyo66A6cA3UYYQ8F4IubLTAQ9yWY87ke5IAAHRNG9mR2EXc4qRYoYER7%252FZybPYmAlG41Mv00kuBZI58O0tDItnAgwiVfEXVZZo7HR3aDf9CucH5TTIiBzDl0R%252FG; bstg_session=8gyCwX32bZzanTgdLaZBSy59nGo%253D*1490351660268*HykHhZssO9ClUObk0AJolyco8TSzl0SPDpw%252B0imtKu%252BnZfvnh%252BqahG%252BdTljhfCUI7%252Bv%252B%252F4RHK7b0ZmjzJy8aX9L6HS6UXVUhkuvRdRJEmB%252BUMlHmXNhXtZ99bAKEAainolaP0mWsF%252BR%252BsAHsS1xqp%252FCCQal6cvDeieb%252Bbmvu6I6oPYA9V%252BmsC20b7UnWEcnXOVz%252BoGiU42dNYXWP1QEfpVntYRFevqY9vBpoRKTP57G69JhyOL1HSXlY5y8t%252Bm%252BC",
             "bstgCookie": "mp_44879cec8b19cf0d50996978c4c59e23_mixpanel=%7B%22distinct_id%22%3A%20%22158f78fb63412d-0bd71f7f9b4253-3072065b-17e9d7-158f78fb63511%22%2C%22env%22%3A%20%22web%22%2C%22%24initial_referrer%22%3A%20%22http%3A%2F%2Fwebapp.4pax.com%3A8181%2F%22%2C%22%24initial_referring_domain%22%3A%20%22webapp.4pax.com%3A8181%22%2C%22eid%22%3A%20%220b2a5c2a203f9ba64bbb75d141036634%22%2C%22pid%22%3A%20%22ba804e18c3360430e8c48643d7008359%22%2C%22branding%22%3A%20null%7D; webapp=WCV4HbNkaaccVbTmQ5VeQOvQdnE%253D*1490280881458*82Qa3VOY4nyjG1rB1KAqOOWnIAGpXPlY%252FdMAqBHFogaEQ2Rtmywpr4e7GARD%252FrWzTUnKqdEcPFy00uB%252BVNw%252FRkMSie5ajfPxoU5WDXCyAG1RauE6XtMXOFT52TaZxiEJylK0mRY21NmnOMYU0JQdNbHG3mRcHCfdKtkwal5phr9sKluqlpXxqILuRAumdpjYvdLf8lsiuO4FLZ50cnOWe8WMCSvAw63qTQIUZbVJenGVeUfexBO%252BkR06gbcQUwzG2tCUN3IHlSBv1MuOTVjFuTFZ3d%252FqaHzWrZLmnfnOO8A%252BbwFhixZidAzmM5s8jJ%252BY; bstg_session=4iOAgDUPdEE2FjJtRjiYkq4UCCU%253D*1490280881458*HykHhZssO9ClUObk0AJolyco8TSzl0SPDpw%252B0imtKu%252BnZfvnh%252BqahG%252BdTljhfCUI7%252Bv%252B%252F4RHK7b0ZmjzJy8aX9L6HS6UXVUhkuvRdRJEmB%252BUMlHmXNhXtZ99bAKEAainolaP0mWsF%252BR%252BsAHsS1xqp%252FCCQal6cvDeieb%252Bbmvu6I6oPYA9V%252BmsC20b7UnWEcnXOVz%252BoGiU42dNYXWP1QEfpVntYRFevqY9vBpoRKTP57G69JhyOL1HSXlY5y8t%252Bm%252BC",
             "handlerUrl": "http://localhost.backstage.4pax.com/api/v1/eid/0b2a5c2a203f9ba64bbb75d141036634/nodehandlers"
         }
-    }
+    },
+    "typescript.check.tscVersion": false,
+    "typescript.implementationsCodeLens.enabled": true,
+    "window.menuBarVisibility": "toggle",
+    "erlang.enableExperimentalAutoComplete": true
 }

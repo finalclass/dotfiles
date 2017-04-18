@@ -1,0 +1,3 @@
+[submodule ".emacs.d/distel"]
+	path = .emacs.d/distel
+	url = git@github.com:massemanet/distel.git
