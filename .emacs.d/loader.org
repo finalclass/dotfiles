@@ -1,0 +1,237 @@
+#+TITLE: Emacs configuration
+#+STARTUP: indent 
+
+* use-package
+#+BEGIN_SRC emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+#+END_SRC
+* GUI
+#+BEGIN_SRC emacs-lisp
+(use-package darcula-theme :ensure t)
+(tool-bar-mode -1)
+(set-frame-font "Inconsolata-16")
+;; (mapc
+;;  (lambda (face)
+;;    (set-face-attribute face nil :weight 'normal))
+;;  (face-list))
+(setq-default line-spacing 4)
+(setq inhibit-startup-message t)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq transient-mark-mode t)
+(setq visible-bell nil)
+(show-paren-mode t)
+(pending-delete-mode t)
+(setq ns-alternate-modifier 'meta)
+(setq ns-right-alternate-modifier nil)
+(menu-bar-mode -1)
+#+END_SRC
+
+* Unset key
+#+BEGIN_SRC emacs-lisp
+(global-unset-key (kbd "M-m"))
+#+END_SRC
+* org-mode
+
+for ribbon and windmove compatibility
+#+BEGIN_SRC emacs-lisp
+(eval-after-load "org"
+  '(progn
+     ;;(define-key org-mode-map (kbd "<M-S-left>") nil)
+     ;;(define-key org-mode-map (kbd "<M-S-right>") nil)
+     (define-key org-mode-map (kbd "<M-left>") nil)
+     (define-key org-mode-map (kbd "<M-right>") nil)))
+
+(defun org-mode-is-intrusive ()
+  ;; Make something work in org-mode:
+  ;; (local-unset-key (kbd "something I use"))
+  (local-unset-key (kbd "M-n"))
+  (local-unset-key (kbd "M-p")))
+(add-hook 'org-mode-hook 'org-mode-is-intrusive)
+
+                                        ;org-babel
+(setq org-src-fontify-natively t)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (emacs-lisp . t)
+   (js . t)
+   )
+ )
+
+(custom-set-variables
+ '(org-agenda-files (quote ("~/todo-home.org"))))
+#+END_SRC
+
+* windmove
+
+Moving between windows (S-<left> etc...)
+
+#+BEGIN_SRC emacs-lisp
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+(global-set-key (kbd "C-S-b") 'windmove-left)
+(global-set-key (kbd "C-S-f") 'windmove-right)
+(global-set-key (kbd "C-S-p") 'windmove-up)
+(global-set-key (kbd "C-S-n") 'windmove-down)
+#+END_SRC
+* ido-mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package ido
+  :ensure t
+  :config 
+  (progn
+    (use-package flx-ido :ensure t)
+    (use-package ido-vertical-mode :ensure t)
+    (use-package ido-at-point :ensure t)
+    (use-package smex
+      :ensure t
+      :init (smex-initialize)
+    (ido-mode 1)
+      :bind ("M-x" . smex))
+    (ido-vertical-mode 1)
+    (setq ido-vertical-define-keys 'C-n-C-p-up-and-down)
+    (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+    (ido-everywhere 1)
+    (flx-ido-mode 1)
+    (setq ido-use-faces nil)))
+    
+#+END_SRC
+* which-key
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+    :ensure t
+    :diminish which-key-mode
+    :config
+    (which-key-mode))
+#+END_SRC
+* moveing
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-<up>") (lambda () (interactive) (previous-line 5)))
+  (global-set-key (kbd "C-<down>") (lambda () (interactive) (next-line 5)))
+
+  (use-package mwim 
+    :ensure t
+    :init 
+    (progn 
+      (global-set-key (kbd "<home>") 'mwim-beginning-of-line-or-code)
+      (global-set-key (kbd "<end>") 'mwim-end-of-line-or-code)))
+#+END_SRC
+* move between buffers
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "<M-left>") 'previous-buffer)
+  (global-set-key (kbd "<M-right>") 'next-buffer)
+#+END_SRC
+* fc-bin
+#+BEGIN_SRC emacs-lisp
+(defun fc-shell-command (cmd)
+  (substring
+   (shell-command-to-string (fc-init-command cmd))
+  0
+  -1))
+
+(defun fc-init-command (cmd)
+  (concat "source ~/.bin/fc-variables.sh && " cmd))
+
+(defun fc-deploy ()
+  (interactive)
+  (let ((command (fc-init-command "fc-deploy.sh&")))
+    (message command)
+    (shell-command command "*Messages*" "*Messages*")))
+
+(global-set-key (kbd "C-c C-x C-x") 'fc-deploy)
+
+(defun fc-deploy-cloud ()
+  (interactive)
+  (let ((command (fc-init-command "EID=$CLOUD_EID DS=$CLOUD_DS fc-deploy.sh&")))
+    (message command)
+    (shell-command command "*Messages*" "*Messages*")))
+
+(global-set-key (kbd "C-c C-x C-c") 'fc-deploy-cloud)
+
+(defun fc-ip ()
+  (interactive)
+  (insert (fc-shell-command "fc-ip.sh")))
+
+(defun fc-env (shell-environment-variable-name)
+  (fc-shell-command
+   (concat "echo $" shell-environment-variable-name)))
+#+END_SRC
+
+* markdown
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :mode ("\\.\\(m\\(ark\\)?down\\|md\\)$" . markdown-mode))
+(use-package markdown-preview-mode
+  :ensure t)
+#+END_SRC
+* Multi Cursors
+#+BEGIN_SRC emacs-lisp
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-all-like-this)
+         ("C-c C-<" . mc/mark-previous-like-this)))
+#+END_SRC
+* Smooth scrolling
+
+#+BEGIN_SRC emacs-lisp
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
+#+END_SRC
+
+* magit
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :ensure t
+  :commands magit-get-top-dir
+  :bind (("M-m g s" . magit-status)))
+#+END_SRC
+
+* Trash and trash files
+
+#+BEGIN_SRC emacs-lisp
+  ;; Backup settings
+  (defvar --backup-directory (concat init-dir "backups"))
+
+  (if (not (file-exists-p --backup-directory))
+      (make-directory --backup-directory t))
+
+  (setq backup-directory-alist `(("." . ,--backup-directory)))
+  (setq make-backup-files t               ; backup of a file the first time it is saved.
+        backup-by-copying t               ; don't clobber symlinks
+        version-control t                 ; version numbers for backup files
+        delete-old-versions t             ; delete excess backup files silently
+        delete-by-moving-to-trash t
+        kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
+        kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
+        auto-save-default t               ; auto-save every buffer that visits a file
+        auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+        auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+        )
+    (setq delete-by-moving-to-trash t
+          trash-directory "~/.local/share/Trash/emacs")
+
+    (setq backup-directory-alist `(("." . ,(expand-file-name
+                                            (concat init-dir "backups")))))
+#+END_SRC

@@ -404,8 +404,7 @@ you should place your code here."
 
   (defun fc-deploy ()
     (interactive)
-    (let ((c
-           ommand (fc-init-command "fc-deploy.sh&")))
+    (let ((command (fc-init-command "fc-deploy.sh&")))
       (message command)
       (shell-command command nil nil)))
 

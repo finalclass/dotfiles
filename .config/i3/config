@@ -157,10 +157,10 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# assignments
+# assignments (find the class with `xprop`)
 assign [class="Code"] $wsCode
 assign [class="Terminator"] $wsTerminals
-assign [class="chromium"] $wsBrowsers
+assign [class="Chromium"] $wsBrowsers
 assign [class="Emacs"] $wsEmacs
 
 bindsym $mod+Ctrl+Left move workspace to output left
