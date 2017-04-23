@@ -17,10 +17,18 @@
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 0)
  '(edts-inhibit-package-check t)
+ '(js2-auto-indent-p t)
+ '(js2-consistent-level-indent-inner-bracket t)
+ '(js2-enter-indents-newline t)
+ '(js2-indent-level 4)
+ '(js2-indent-on-enter-key t)
+ '(js2-mode-show-strict-warnings t)
+ '(js2-strict-inconsistent-return-warning nil)
+ '(js2-strict-trailing-comma-warning nil)
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package))))
+    (company-restclient key-chord expand-region tide jade web-mode emmet-mode emmet emment emment-mode org-bullets popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
