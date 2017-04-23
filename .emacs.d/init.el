@@ -20,7 +20,7 @@
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package))))
+    (popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -313,11 +313,10 @@ Moving between windows (S-<left> etc...)
   (setq dired-details-propagate-flag t))
 
 #+END_SRC
-* erlang
-
+* company
 #+BEGIN_SRC emacs-lisp
 (custom-set-variables
- '(company-idle-delay 0)
+ '(company-idle-delay 1)
  '(company-minimum-prefix-length 0)
  '(edts-inhibit-package-check t))
 (use-package company
@@ -325,6 +324,9 @@ Moving between windows (S-<left> etc...)
   :defer t
   :config (global-company-mode)
   :bind (("M-." . company-complete)))
+#+END_SRC
+* erlang
+#+BEGIN_SRC emacs-lisp
 
 (use-package erlang :ensure t)
 (use-package f :ensure t)
@@ -351,4 +353,61 @@ Moving between windows (S-<left> etc...)
       (setq ivy-count-format "(%d/%d) ")
       (ivy-mode 1)
       (use-package counsel :ensure t))
+#+END_SRC
+* php
+#+BEGIN_SRC emacs-lisp
+(use-package company-php :ensure t)
+(use-package php-mode :ensure t)
+#+END_SRC
+
+* comments
+#+BEGIN_SRC emacs-lisp
+  (defun toggle-comment-on-region-or-line ()
+    "Comments or uncomments the region or the current line if there's no active region."
+    (interactive)
+    (let (beg end)
+      (if (region-active-p)
+          (setq beg (region-beginning) end (region-end))
+        (setq beg (line-beginning-position) end (line-end-position)))
+      (comment-or-uncomment-region beg end)
+      (next-line)))
+
+                                          ;commenting
+  (global-set-key (kbd "M-m ;") 'toggle-comment-on-region-or-line)
+#+END_SRC
+* window size (doremi)
+#+BEGIN_SRC emacs-lisp
+  (use-package doremi
+    :ensure t
+    :config
+    (use-package doremi-frm :ensure t)
+    (use-package doremi-cmd :ensure t)
+    :bind (("M-m s <right>" . doremi-window-width+)
+           ("M-m s <left>" . doremi-window-width+)
+           ("M-m s <up>" . doremi-window-height+)
+           ("M-m s <down>" . doremi-window-height+)))
+#+END_SRC
+* editorconfig
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+    :ensure t
+    :config
+    (editorconfig-mode 1))
+#+END_SRC
+* Close messages on C-g
+#+BEGIN_SRC emacs-lisp
+  (use-package popwin 
+    :ensure t
+    :config
+    (popwin-mode 1))
+
+  (add-to-list
+   'display-buffer-alist
+   (cons "\\*Messages\\*.*"
+         (cons #'(lambda (buffer b)
+                   (popwin:messages)) ())))
+#+END_SRC
+* winner-mode
+#+BEGIN_SRC emacs-lisp
+(winner-mode)
 #+END_SRC
