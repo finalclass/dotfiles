@@ -9,6 +9,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color'
 alias skype="skype"
 alias dc="docker-compose"
+alias ec="emacsclient -c -n"
 
 source ~/.bin/git-completion.bash
 source ~/.bin/git-prompt.sh

@@ -28,10 +28,10 @@
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (company-restclient key-chord expand-region tide jade web-mode emmet-mode emmet emment emment-mode org-bullets popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package))))
+    (yasnippet editorconfig-mode coffee-mode coffeescript-mode coffeescript flycheck-typescript-tslint highlight-current-line hl-spotlight undo-tree yaml-mode dockerfile-mode docker company-restclient key-chord expand-region tide jade web-mode emmet-mode emmet emment emment-mode org-bullets popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(trailing-whitespace ((t (:foreground "#333333")))))

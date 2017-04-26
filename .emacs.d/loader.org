@@ -1,5 +1,5 @@
 #+TITLE: Emacs configuration
-#+STARTUP: indent 
+#+STARTUP: indent
 
 * use-package
 #+BEGIN_SRC emacs-lisp
@@ -47,6 +47,7 @@
 (setq ns-alternate-modifier 'meta)
 (setq ns-right-alternate-modifier nil)
 (menu-bar-mode -1)
+
 #+END_SRC
 
 * Unset leading key
@@ -56,7 +57,7 @@
 * key-chord
 
 Key chord let's use bind commends to two keys pressed simoultanously.
-For example: 
+For example:
 
 (key-chord-define-global "BB" 'iswitchb)
 (key-chord-define-global "FF" 'find-file)
@@ -113,7 +114,7 @@ for ribbon and windmove compatibility
 #+BEGIN_SRC emacs-lisp
 (use-package ido
   :ensure t
-  :config 
+  :config
   (progn
     (use-package flx-ido :ensure t)
     (use-package ido-vertical-mode :ensure t)
@@ -129,7 +130,7 @@ for ribbon and windmove compatibility
     (ido-everywhere 1)
     (flx-ido-mode 1)
     (setq ido-use-faces nil)))
-    
+
 #+END_SRC
 * which-key
 #+BEGIN_SRC emacs-lisp
@@ -144,12 +145,12 @@ for ribbon and windmove compatibility
   (global-set-key (kbd "C-<up>") (lambda () (interactive) (previous-line 5)))
   (global-set-key (kbd "C-<down>") (lambda () (interactive) (next-line 5)))
 
-  (use-package mwim 
+  (use-package mwim
     :ensure t
-    :init 
-    (progn 
-      (global-set-key (kbd "<home>") 'mwim-beginning-of-line-or-code)
-      (global-set-key (kbd "<end>") 'mwim-end-of-line-or-code)))
+    :init
+    (progn
+      (global-set-key (kbd "<home>") 'mwim-beginning-of-code-or-line)
+      (global-set-key (kbd "<end>") 'mwim-end-of-code-or-line)))
 #+END_SRC
 * move between buffers
 #+BEGIN_SRC emacs-lisp
@@ -174,6 +175,14 @@ for ribbon and windmove compatibility
     (shell-command command "*Messages*" "*Messages*")))
 
 (global-set-key (kbd "M-m d l") 'fc-deploy)
+
+(defun fc-deploy-mt ()
+  (interactive)
+  (let ((command (fc-init-command "DEBUG=motim-tool* mt publish&")))
+    (message command)
+    (shell-command command "*Messages*" "*Messages*")))
+
+(global-set-key (kbd "M-m d m") 'fc-deploy-mt)
 
 (defun fc-deploy-cloud ()
   (interactive)
@@ -248,47 +257,49 @@ for ribbon and windmove compatibility
 * swiper
 
 #+BEGIN_SRC emacs-lisp
-(use-package swiper
-     :diminish ivy-mode
-     :ensure t
-     :bind*
-     (("C-s" . swiper)
-      ("C-c C-r" . ivy-resume)
-      ("C-c h f" . counsel-describe-function)
-      ("C-c h v" . counsel-describe-variable)
-      ("C-c i u" . counsel-unicode-char)
-      ("M-i" . counsel-imenu)
-      ("C-c g" . counsel-git)
-      ("C-c j" . counsel-git-grep)
-      ("C-c k" . counsel-ag)
-      ("C-c l" . scounsel-locate))
-     :config
-     (progn
-       (ivy-mode 1)
-       (setq ivy-use-virtual-buffers t)
-       (define-key read-expression-map (kbd "C-r") #'counsel-expression-history)
-       (ivy-set-actions
-	'counsel-find-file
-	'(("d" (lambda (x) (delete-file (expand-file-name x)))
-           "delete"
-           )))
-       (ivy-set-actions
-	'ivy-switch-buffer
-	'(("k"
-           (lambda (x)
-             (kill-buffer x)
-             (ivy--reset-state ivy-last))
-           "kill")
-          ("j"
-           ivy--switch-buffer-other-window-action
-           "other window")))))
+  (use-package swiper
+       :diminish ivy-mode
+       :ensure t
+       :bind*
+       (("C-s" . swiper)
+        ("M-m s s" . swiper)
+        ("M-m s r" . ivy-resume)
+        ("M-m h f" . counsel-describe-function)
+        ("M-m h v" . counsel-describe-variable)
+        ("M-m h k" . describe-key)
+        ("M-m o u" . counsel-unicode-char)
+        ("M-m i" . counsel-imenu)
+        ("M-m g c" . counsel-git)
+        ("M-m g g" . counsel-git-grep)
+        ("M-m s a" . counsel-ag)
+        ("M-m s l" . counsel-locate))
+       :config
+       (progn
+         (ivy-mode 1)
+         (setq ivy-use-virtual-buffers t)
+         (define-key read-expression-map (kbd "C-r") #'counsel-expression-history)
+         (ivy-set-actions
+          'counsel-find-file
+          '(("d" (lambda (x) (delete-file (expand-file-name x)))
+             "delete"
+             )))
+         (ivy-set-actions
+          'ivy-switch-buffer
+          '(("k"
+             (lambda (x)
+               (kill-buffer x)
+               (ivy--reset-state ivy-last))
+             "kill")
+            ("j"
+             ivy--switch-buffer-other-window-action
+             "other window")))))
 #+END_SRC
 * projectile
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
   :init (setq projectile-keymap-prefix (kbd "M-m p"))
-  :config 
+  :config
   (projectile-mode))
 #+END_SRC
 * dired
@@ -298,7 +309,7 @@ for ribbon and windmove compatibility
   "Sort dired listings with directories first."
   (save-excursion
     (let (buffer-read-only)
-      (forward-line 2) ;; beyond dir. header 
+      (forward-line 2) ;; beyond dir. header
       (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
     (set-buffer-modified-p nil)))
 
@@ -309,7 +320,7 @@ for ribbon and windmove compatibility
 
 (use-package dired+
   :ensure t
-  :init 
+  :init
   (setq dired-dwim-target t)
   (setq dired-details-propagate-flag t))
 
@@ -317,7 +328,7 @@ for ribbon and windmove compatibility
 * recent files
 #+BEGIN_SRC emacs-lisp
 (recentf-mode 1)
-(setq-default recent-save-file "~/.emacs.d/recentf")  
+(setq-default recent-save-file "~/.emacs.d/recentf")
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
@@ -333,15 +344,16 @@ for ribbon and windmove compatibility
 * company
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-variables
- '(company-idle-delay 0)
- '(company-minimum-prefix-length 100)
- '(edts-inhibit-package-check t))
-(use-package company
-  :ensure t
-  :defer t
-  :config (global-company-mode)
-  :bind (("S-SPC" . company-complete)))
+  (custom-set-variables
+   '(company-idle-delay 0)
+   '(company-minimum-prefix-length 0)
+   '(edts-inhibit-package-check t))
+  (use-package company
+    :ensure t
+    :defer t
+    :diminish company-mode
+    :config (global-company-mode)
+    :bind (("M-SPC" . company-complete)))
 #+END_SRC
 
 * comments
@@ -363,12 +375,13 @@ for ribbon and windmove compatibility
 #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
     :ensure t
+    :diminish editorconfig-mode
     :config
     (editorconfig-mode 1))
 #+END_SRC
 * Close messages on C-g
 #+BEGIN_SRC emacs-lisp
-  (use-package popwin 
+  (use-package popwin
     :ensure t
     :config
     (popwin-mode 1))
@@ -456,6 +469,7 @@ for ribbon and windmove compatibility
     :bind (("C-." . er/expand-region)))
 #+END_SRC
 * Killing
+
 ** Smart kill line with whitespace
 
 #+BEGIN_SRC emacs-lisp
@@ -481,6 +495,15 @@ for ribbon and windmove compatibility
           (replace-match "" nil nil))))))
 
 (key-chord-define-global "wk" 'kill-whitespace)
+#+END_SRC
+* Current line
+#+BEGIN_SRC emacs-lisp
+  (global-hl-line-mode 1)
+#+END_SRC
+* Whitespace
+#+BEGIN_SRC emacs-lisp
+(setq show-trailing-whitespace t)
+(custom-set-faces '(trailing-whitespace ((t (:foreground "#333333")))))
 #+END_SRC
 * Ribbon
 #+BEGIN_SRC emacs-lisp
@@ -598,6 +621,30 @@ for ribbon and windmove compatibility
 #+RESULTS:
 : ribbon-mode-start
 
+* server
+#+BEGIN_SRC emacs-lisp
+  (server-mode)
+#+END_SRC
+* errors
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "M-m e n") 'next-error)
+(global-set-key (kbd "M-m e p") 'previous-error)
+#+END_SRC
+* Undo tree
+#+BEGIN_SRC emacs-lisp
+    (use-package undo-tree
+      :ensure t
+      :diminish undo-tree-mode
+      :bind (("M-m /" . undo-tree-visualize)))
+#+END_SRC
+* yasnippet
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet
+    :ensure t
+    :config
+    (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+    (yas-global-mode 1))
+#+END_SRC
 * Languges
 ** erlang
 #+BEGIN_SRC emacs-lisp
@@ -621,7 +668,7 @@ for ribbon and windmove compatibility
 #+BEGIN_SRC emacs-lisp
       (use-package emmet-mode
         :ensure t
-        :bind (("C-;" . emmet-expand-line)))
+        :bind (("S-SPC" . emmet-expand-line)))
 
       (use-package web-mode
         :ensure t
@@ -638,7 +685,7 @@ for ribbon and windmove compatibility
         (defun my-web-mode-hook ()
           "Hooks for Web mode."
           (setq web-mode-enable-auto-closing t)
-          (setq web-mode-enable-auto-quoting t) 
+          (setq web-mode-enable-auto-quoting t)
           (setq web-mode-enable-current-element-highlight t)
           (setq web-mode-enable-current-column-highlight t)
           (setq web-mode-markup-indent-offset 2))
@@ -647,25 +694,26 @@ for ribbon and windmove compatibility
 #+END_SRC
 ** TypeScript
 #+BEGIN_SRC emacs-lisp
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    ;; company is an optional dependency. You have to
+    ;; install it separately via package-install
+    ;; `M-x package-install [ret] company`
+    (company-mode +1))
 
-(use-package tide
-  :ensure t
-  :config
-  (setq company-tooltip-align-annotations t)
-  (add-hook 'before-save-hook 'tide-format-before-save)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
+  (use-package tide
+    :ensure t
+    :config
+    (setq company-tooltip-align-annotations t)
+    (add-hook 'before-save-hook 'tide-format-before-save)
+    (add-hook 'typescript-mode-hook #'setup-tide-mode))
 #+END_SRC
+
 ** JavaScript
 
 #+BEGIN_SRC emacs-lisp
@@ -723,10 +771,49 @@ for ribbon and windmove compatibility
   (use-package restclient
     :ensure t
     :config
-    (eval-after-load 'company 
+    (eval-after-load 'company
       '(add-to-list 'company-backends 'company-restclient))
 
     (add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode)))
 
 
+#+END_SRC
+** Docker
+
+Emacs interface to Docker
+
+#+BEGIN_SRC emacs-lisp
+(use-package docker
+  :ensure t
+  :diminish docker-mode
+  :config
+  (docker-global-mode))
+#+END_SRC
+
+TRAMP integration for docker containers
+
+#+BEGIN_SRC emacs-lisp
+(use-package docker-tramp
+  :ensure t)
+#+END_SRC
+
+Major mode for editing Docker’s Dockerfiles
+
+#+BEGIN_SRC emacs-lisp
+(use-package dockerfile-mode
+  :ensure t)
+#+END_SRC
+
+** yaml
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))
+#+END_SRC
+** Coffeescript
+
+#+BEGIN_SRC emacs-lisp
+(use-package coffee-mode
+  :ensure t)
 #+END_SRC
