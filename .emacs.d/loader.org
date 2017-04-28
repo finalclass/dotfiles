@@ -257,42 +257,51 @@ for ribbon and windmove compatibility
 * swiper
 
 #+BEGIN_SRC emacs-lisp
-  (use-package swiper
-       :diminish ivy-mode
-       :ensure t
-       :bind*
-       (("C-s" . swiper)
-        ("M-m s s" . swiper)
-        ("M-m s r" . ivy-resume)
-        ("M-m h f" . counsel-describe-function)
-        ("M-m h v" . counsel-describe-variable)
-        ("M-m h k" . describe-key)
-        ("M-m o u" . counsel-unicode-char)
-        ("M-m i" . counsel-imenu)
-        ("M-m g c" . counsel-git)
-        ("M-m g g" . counsel-git-grep)
-        ("M-m s a" . counsel-ag)
-        ("M-m s l" . counsel-locate))
-       :config
-       (progn
-         (ivy-mode 1)
-         (setq ivy-use-virtual-buffers t)
-         (define-key read-expression-map (kbd "C-r") #'counsel-expression-history)
-         (ivy-set-actions
-          'counsel-find-file
-          '(("d" (lambda (x) (delete-file (expand-file-name x)))
-             "delete"
-             )))
-         (ivy-set-actions
-          'ivy-switch-buffer
-          '(("k"
-             (lambda (x)
-               (kill-buffer x)
-               (ivy--reset-state ivy-last))
-             "kill")
-            ("j"
-             ivy--switch-buffer-other-window-action
-             "other window")))))
+      (use-package swiper
+           :diminish ivy-mode
+           :ensure t
+           :bind*
+           (
+            ("C-s" . swiper)
+            ("M-m s s" . swiper)
+            ("M-m s r" . ivy-resume)
+            ("M-m h f" . counsel-describe-function)
+            ("M-m h v" . counsel-describe-variable)
+            ("M-m h k" . describe-key)
+            ("M-m o u" . counsel-unicode-char)
+            ("M-m i" . counsel-imenu)
+            ("M-m g c" . counsel-git)
+            ("M-m g g" . counsel-git-grep)
+            ("M-m s a" . counsel-ag)
+            ("M-m k" . counsel-yank-pop)
+            ("M-m s l" . counsel-locate))
+           :config
+           (progn
+             (ivy-mode 1)
+             (setq ivy-display-style 'fancy)
+             (setq ivy-use-virtual-buffers t)
+             (defun bjm-swiper-recenter (&rest args)
+               "recenter display after swiper"
+               (recenter)
+               )
+             (advice-add 'swiper :after #'bjm-swiper-recenter)
+             (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+             (ivy-set-actions
+              'counsel-find-file
+              '(("d" (lambda (x) (delete-file (expand-file-name x)))
+                 "delete"
+                 )))
+             (ivy-set-actions
+              'ivy-switch-buffer
+              '(("k"
+                 (lambda (x)
+                   (kill-buffer x)
+                   (ivy--reset-state ivy-last))
+                 "kill")
+                ("j"
+                 ivy--switch-buffer-other-window-action
+                 "other window")))))
+
 #+END_SRC
 * projectile
 #+BEGIN_SRC emacs-lisp
@@ -645,6 +654,11 @@ for ribbon and windmove compatibility
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (yas-global-mode 1))
 #+END_SRC
+* Scrolling
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-<up>") 'scroll-down-line)
+  (global-set-key (kbd "M-<down>") 'scroll-up-line)
+#+END_SRC
 * Languges
 ** erlang
 #+BEGIN_SRC emacs-lisp
@@ -708,6 +722,7 @@ for ribbon and windmove compatibility
 
   (use-package tide
     :ensure t
+    :bind (("M-m r s" . tide-rename-symbol))
     :config
     (setq company-tooltip-align-annotations t)
     (add-hook 'before-save-hook 'tide-format-before-save)
