@@ -273,7 +273,7 @@ for ribbon and windmove compatibility
             ("M-m g c" . counsel-git)
             ("M-m g g" . counsel-git-grep)
             ("M-m s a" . counsel-ag)
-            ("M-m k" . counsel-yank-pop)
+            ("M-y" . counsel-yank-pop)
             ("M-m s l" . counsel-locate))
            :config
            (progn
@@ -305,6 +305,8 @@ for ribbon and windmove compatibility
 #+END_SRC
 * projectile
 #+BEGIN_SRC emacs-lisp
+(use-package ag
+  :ensure t)
 (use-package projectile
   :ensure t
   :init (setq projectile-keymap-prefix (kbd "M-m p"))
@@ -400,6 +402,11 @@ for ribbon and windmove compatibility
    (cons "\\*Messages\\*.*"
          (cons #'(lambda (buffer b)
                    (popwin:messages)) ())))
+#+END_SRC
+* frames
+Create a new frame
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-n") 'new-frame)
 #+END_SRC
 * windows
 ** Undo configuration with C-c <left>

@@ -217,7 +217,7 @@ bar {
 
 exec_always fc-auto-xps13-displays.sh
 
-exec code
+# exec code
 exec terminator
 exec chromium
 exec emacs
