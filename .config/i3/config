@@ -48,7 +48,8 @@ bindsym XF86AudioPrev exec playerctl previous
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec fc-shell.sh
 bindsym $mod+Ctrl+3 exec emacs
 bindsym $mod+Ctrl+1 exec chromium
 bindsym $mod+Ctrl+z exec code
@@ -159,7 +160,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # assignments (find the class with `xprop`)
 assign [class="Code"] $wsCode
-assign [class="Terminator"] $wsTerminals
+assign [class="Emacs" instance="*shell*"] $wsTerminals
 assign [class="Chromium"] $wsBrowsers
 assign [class="Emacs"] $wsEmacs
 

@@ -21,6 +21,7 @@ export NVM_DIR="/home/sel/.nvm"
 export PATH=$PATH:~/.bin:~/Documents/go/bin:~/AppImages:~/.cache/rebar3/bin
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
+export EDITOR=emacsclient
 
 if ! pgrep -u $USER ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing

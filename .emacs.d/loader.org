@@ -307,6 +307,10 @@ for ribbon and windmove compatibility
 #+BEGIN_SRC emacs-lisp
 (use-package ag
   :ensure t)
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-on))
 (use-package projectile
   :ensure t
   :init (setq projectile-keymap-prefix (kbd "M-m p"))
@@ -356,7 +360,7 @@ for ribbon and windmove compatibility
 
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables
-   '(company-idle-delay 0)
+   '(company-idle-delay 0.5)
    '(company-minimum-prefix-length 0)
    '(edts-inhibit-package-check t))
   (use-package company
@@ -641,6 +645,13 @@ Create a new frame
 #+BEGIN_SRC emacs-lisp
   (server-mode)
 #+END_SRC
+* shell
+#+BEGIN_SRC emacs-lisp
+
+(setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
+
+#+END_SRC
+
 * errors
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-m e n") 'next-error)
