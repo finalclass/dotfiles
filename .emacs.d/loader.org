@@ -647,9 +647,8 @@ Create a new frame
 #+END_SRC
 * shell
 #+BEGIN_SRC emacs-lisp
-
-(setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-pop-up-window)))
-
+  (use-package multi-term
+    :ensure t))
 #+END_SRC
 
 * errors
