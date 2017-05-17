@@ -11,5 +11,9 @@
 
 (setq mc/cmds-to-run-once
       '(
+        fc-deploy
         handle-switch-frame
+        scroll-down-line
+        scroll-up-line
+        wdired-finish-edit
         ))

@@ -257,65 +257,66 @@ for ribbon and windmove compatibility
 * swiper
 
 #+BEGIN_SRC emacs-lisp
-      (use-package swiper
-           :diminish ivy-mode
-           :ensure t
-           :bind*
-           (
-            ("C-s" . swiper)
-            ("M-m s s" . swiper)
-            ("M-m s r" . ivy-resume)
-            ("M-m h f" . counsel-describe-function)
-            ("M-m h v" . counsel-describe-variable)
-            ("M-m h k" . describe-key)
-            ("M-m o u" . counsel-unicode-char)
-            ("M-m i" . counsel-imenu)
-            ("M-m g c" . counsel-git)
-            ("M-m g g" . counsel-git-grep)
-            ("M-m s a" . counsel-ag)
-            ("M-y" . counsel-yank-pop)
-            ("M-m s l" . counsel-locate))
-           :config
-           (progn
-             (ivy-mode 1)
-             (setq ivy-display-style 'fancy)
-             (setq ivy-use-virtual-buffers t)
-             (defun bjm-swiper-recenter (&rest args)
-               "recenter display after swiper"
-               (recenter)
-               )
-             (advice-add 'swiper :after #'bjm-swiper-recenter)
-             (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-             (ivy-set-actions
-              'counsel-find-file
-              '(("d" (lambda (x) (delete-file (expand-file-name x)))
-                 "delete"
-                 )))
-             (ivy-set-actions
-              'ivy-switch-buffer
-              '(("k"
-                 (lambda (x)
-                   (kill-buffer x)
-                   (ivy--reset-state ivy-last))
-                 "kill")
-                ("j"
-                 ivy--switch-buffer-other-window-action
-                 "other window")))))
-
+  (use-package swiper
+       :diminish ivy-mode
+       :ensure t
+       :bind*
+       (
+        ("C-s" . swiper)
+        ("M-m s s" . swiper)
+        ("M-m s r" . ivy-resume)
+        ("M-m h f" . counsel-describe-function)
+        ("M-m h v" . counsel-describe-variable)
+        ("M-m h k" . describe-key)
+        ("M-m o u" . counsel-unicode-char)
+        ("M-m i" . counsel-imenu)
+        ("M-m g c" . counsel-git)
+        ("M-m g g" . counsel-git-grep)
+        ("M-m s a" . counsel-ag)
+        ("M-y" . counsel-yank-pop)
+        ("M-m s l" . counsel-locate))
+       :config
+       (progn
+         (ivy-mode 1)
+         (setq ivy-display-style 'fancy)
+         (setq ivy-use-virtual-buffers t)
+         (defun bjm-swiper-recenter (&rest args)
+           "recenter display after swiper"
+           (recenter)
+           )
+         (advice-add 'swiper :after #'bjm-swiper-recenter)
+         (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+         (ivy-set-actions
+          'counsel-find-file
+          '(("d" (lambda (x) (delete-file (expand-file-name x)))
+             "delete"
+             )))
+         (ivy-set-actions
+          'ivy-switch-buffer
+          '(("k"
+             (lambda (x)
+               (kill-buffer x)
+               (ivy--reset-state ivy-last))
+             "kill")
+            ("j"
+             ivy--switch-buffer-other-window-action
+             "other window")))))
 #+END_SRC
 * projectile
 #+BEGIN_SRC emacs-lisp
-(use-package ag
-  :ensure t)
-(use-package counsel-projectile
-  :ensure t
-  :config
-  (counsel-projectile-on))
-(use-package projectile
-  :ensure t
-  :init (setq projectile-keymap-prefix (kbd "M-m p"))
-  :config
-  (projectile-mode))
+  (use-package ag
+    :ensure t)
+  (use-package counsel-projectile
+    :ensure t
+    :config
+    (counsel-projectile-on))
+  (use-package projectile
+    :ensure t
+    :init 
+    (define-key projectile-mode-map projectile-keymap-prefix nil)
+    (define-key projectile-mode-map (kbd "M-m p") 'projectile-command-map) 
+    :config
+    (projectile-mode))
 #+END_SRC
 * dired
 
@@ -360,7 +361,7 @@ for ribbon and windmove compatibility
 
 #+BEGIN_SRC emacs-lisp
   (custom-set-variables
-   '(company-idle-delay 0.5)
+   '(company-idle-delay 0)
    '(company-minimum-prefix-length 0)
    '(edts-inhibit-package-check t))
   (use-package company
@@ -368,7 +369,7 @@ for ribbon and windmove compatibility
     :defer t
     :diminish company-mode
     :config (global-company-mode)
-    :bind (("M-SPC" . company-complete)))
+    :bind (("C-;" . company-complete)))
 #+END_SRC
 
 * comments
@@ -648,9 +649,8 @@ Create a new frame
 * shell
 #+BEGIN_SRC emacs-lisp
   (use-package multi-term
-    :ensure t))
+    :ensure t)
 #+END_SRC
-
 * errors
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "M-m e n") 'next-error)
@@ -848,4 +848,9 @@ Major mode for editing Docker’s Dockerfiles
 #+BEGIN_SRC emacs-lisp
 (use-package coffee-mode
   :ensure t)
+#+END_SRC
+** Jade
+#+BEGIN_SRC emacs-lisp
+  (use-package jade-mode
+    :ensure t)
 #+END_SRC
