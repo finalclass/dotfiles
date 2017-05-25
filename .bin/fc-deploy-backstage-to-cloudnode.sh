@@ -35,7 +35,7 @@ fi
 cd ~/Documents/spotme/docker-devnode/backstage-app/
 
 if [ "$BUILD" == "yes" ]; then
-    docker-compose run bstg npm run gulp build    
+    docker-compose run bstg npm run gulp build:prod    
 fi
 
 docker-compose run -e DB_URL=https://cloudadmin:$CAPASS@$NODE.4pax.com/backstage bstg ./tools/deploy.js

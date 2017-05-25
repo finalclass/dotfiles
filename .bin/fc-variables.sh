@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export EID_TEST_CHECKBOX=5b50cbd0a297a123d720d76f46000131
-export EID=$EID_TEST_CHECKBOX
+export EID_A=26e3289b306e849c3f349af0be087107
+export EID=$EID_A
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"
 export WEBAPP_ENABLED=true

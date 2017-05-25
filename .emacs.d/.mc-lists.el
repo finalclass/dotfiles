@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         kill-region
+        mwim-beginning-of-code-or-line
         mwim-end-of-code-or-line
         org-self-insert-command
         typescript-insert-and-indent

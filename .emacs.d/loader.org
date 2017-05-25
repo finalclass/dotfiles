@@ -360,16 +360,22 @@ for ribbon and windmove compatibility
 * company
 
 #+BEGIN_SRC emacs-lisp
-  (custom-set-variables
-   '(company-idle-delay 0)
-   '(company-minimum-prefix-length 0)
-   '(edts-inhibit-package-check t))
-  (use-package company
-    :ensure t
-    :defer t
-    :diminish company-mode
-    :config (global-company-mode)
-    :bind (("C-;" . company-complete)))
+    (custom-set-variables
+     '(company-idle-delay 0)
+     '(company-minimum-prefix-length 0)
+     '(edts-inhibit-package-check t))
+    (use-package company
+      :ensure t
+      :defer t
+      :diminish company-mode
+      :config
+      (global-company-mode)
+      (setq company-dabbrev-downcase nil)
+      :bind (("C-;" . company-complete)))
+(custom-set-variables
+     '(company-idle-delay 0)
+     '(company-minimum-prefix-length 0)
+     '(edts-inhibit-package-check t))
 #+END_SRC
 
 * comments
@@ -853,4 +859,35 @@ Major mode for editing Docker’s Dockerfiles
 #+BEGIN_SRC emacs-lisp
   (use-package jade-mode
     :ensure t)
+#+END_SRC
+** Go
+#+BEGIN_SRC emacs-lisp
+  (defun my-go-mode-hook ()
+                                          ; Call Gofmt before saving                                                    
+    (add-hook 'before-save-hook 'gofmt-before-save)
+                                          ; Godef jump key binding                                                      
+    (local-set-key (kbd "M-.") 'godef-jump)
+    (local-set-key (kbd "M-*") 'pop-tag-mark))
+
+  (defun auto-complete-for-go ()
+    (auto-complete-mode 1))
+
+
+  (use-package go-mode
+    :ensure t
+    :config
+    (add-to-list 'exec-path "/Users/tleyden/Development/gocode/bin")
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook 'my-go-mode-hook))
+
+  (use-package go-autocomplete
+    :ensure t)
+
+  (use-package company-go
+    :ensure t
+    :config
+    (add-hook 'go-mode-hook (lambda ()
+                              (set (make-local-variable 'company-backends) '(company-go))
+                              (company-mode)))
+    (add-hook 'go-mode-hook 'flycheck-mode))
 #+END_SRC

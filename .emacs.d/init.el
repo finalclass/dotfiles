@@ -37,7 +37,7 @@
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (jade-mode protbuf multi-term counsel-projectile ag helm-swoop yasnippet editorconfig-mode coffee-mode coffeescript-mode coffeescript flycheck-typescript-tslint highlight-current-line hl-spotlight undo-tree yaml-mode dockerfile-mode docker company-restclient key-chord expand-region tide jade web-mode emmet-mode emmet emment emment-mode org-bullets popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package)))
+    (company-go auto-complete go-complete jade-mode protbuf multi-term counsel-projectile ag helm-swoop yasnippet editorconfig-mode coffee-mode coffeescript-mode coffeescript flycheck-typescript-tslint highlight-current-line hl-spotlight undo-tree yaml-mode dockerfile-mode docker company-restclient key-chord expand-region tide jade web-mode emmet-mode emmet emment emment-mode org-bullets popwin editorconfig doremi-cmd doremi-frm doremi company-php counsel edts dired+ projectile magit markdown-preview-mode multiple-cursors markdown-mode markdown mwim which-key smex ido-at-point ido-vertical-mode flx-ido use-package)))
  '(protect-buffer-bury-p nil)
  '(tramp-default-method "ssh"))
 (custom-set-faces
