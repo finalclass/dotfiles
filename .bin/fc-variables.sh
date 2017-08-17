@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EID_A=26e3289b306e849c3f349af0be087107
+export EID_A=60cef0ef0e3426a2a27dabf30e000cb6
 export EID=$EID_A
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"

@@ -360,22 +360,20 @@ for ribbon and windmove compatibility
 * company
 
 #+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :defer t
+    :diminish company-mode
+    :config
+    (global-company-mode)
     (custom-set-variables
      '(company-idle-delay 0)
-     '(company-minimum-prefix-length 0)
-     '(edts-inhibit-package-check t))
-    (use-package company
-      :ensure t
-      :defer t
-      :diminish company-mode
-      :config
-      (global-company-mode)
-      (setq company-dabbrev-downcase nil)
-      :bind (("C-;" . company-complete)))
-(custom-set-variables
-     '(company-idle-delay 0)
-     '(company-minimum-prefix-length 0)
-     '(edts-inhibit-package-check t))
+     '(company-echo-delay 0)
+     '(company-global-modes '(not git-commit-mode))
+     '(company-minimum-prefix-length 0))
+    
+    (setq company-dabbrev-downcase nil)
+    :bind (("C-;" . company-complete)))
 #+END_SRC
 
 * comments
@@ -685,6 +683,7 @@ Create a new frame
 * Languges
 ** erlang
 #+BEGIN_SRC emacs-lisp
+(setq edts-inhibit-package-check t)
 
 (use-package erlang :ensure t)
 (use-package f :ensure t)
@@ -749,7 +748,8 @@ Create a new frame
     :config
     (setq company-tooltip-align-annotations t)
     (add-hook 'before-save-hook 'tide-format-before-save)
-    (add-hook 'typescript-mode-hook #'setup-tide-mode))
+    (add-hook 'typescript-mode-hook #'setup-tide-mode)
+    (add-hook 'js2-mode-hook #'setup-tide-mode))
 #+END_SRC
 
 ** JavaScript

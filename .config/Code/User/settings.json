@@ -13,7 +13,7 @@
     "files.autoSave": "onFocusChange",
     "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
     "workbench.iconTheme": "vs-minimal",
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "rest-client.environmentVariables": {
         "pentest1-spotme": {
             "bstgCookie": "mp_44879cec8b19cf0d50996978c4c59e23_mixpanel=%7B%22distinct_id%22%3A%20%2215b158f12c679c-0ef295663751a6-317f0158-109912-15b158f12c7d65%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22eid%22%3A%20%221bfc4512fb64d0dd41770cdcbd0be1d0%22%2C%22pid%22%3A%20%221bfc4512fb64d0dd41770cdcbd0e3bfe%22%2C%22env%22%3A%20%22web%22%2C%22branding%22%3A%20%22pentest%22%7D; webapp=zs%252Fc8Yr4aF5RVO%252F2gs7nBuKFQEA%253D*1490890300147*82Qa3VOY4nyjG1rB1KAqOJDYCtz%252BsXsllIaQFlHXrtljdCaSM5kou51SgkZcqIf2iwotGHHkTFuRSCWO6F%252F0exaxvUjh%252FZyyCzPkSr7V0k%252Fgj6EXX%252BPhFPtdEtDbo%252Bt3oC3Lf%252B77nfhw8co%252F8npkz%252FVBD3rQMUuTjqHK8b76bxjQAkmMutcByPdO82dPrd6VM7KRbtdjVLxRPrdXVhRYsdSy%252F7EUUQUcivcRR1CKgiblFmra%252BZjscbCGIiHWlFCZ0q6MGmprUgG61%252BFIeF6aHphWsI3YeMrbZ%252F9tK91dOikt4JHJ0IA3BI5%252Bo8GdR1%252BJ; bstg_session=4ZKFscPtoEfGIrr5a7rGL4ebI3U%253D*1490890300148*HykHhZssO9ClUObk0AJolxHNQgvDtf7cIohMun43yaek9YhIu6i4qIKobQw16KGiAPDfaLTDezQE%252BluTzBBk%252F0FEOZ4GiBUaocKBbbwlfO2ocAvG2%252FSkh10EKtACOTeKWt%252BMLbePCEUDNK%252B920mCoumXzbVGSor6ihYm%252FJB6pznr0NxRSWf6IMd3ICoNdekYAlbMnuZMwdp4txuktvjyjB%252Fh%252FCQT8vLezyhOC1us600%253D"
