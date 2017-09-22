@@ -30,9 +30,9 @@
 #+BEGIN_SRC emacs-lisp
 (use-package darcula-theme :ensure t)
 (tool-bar-mode -1)
-(set-frame-font "Inconsolata-16")
+(set-frame-font "Inconsolata-8")
 (add-to-list 'default-frame-alist
-             '(font . "Inconsolata-16"))
+             '(font . "Inconsolata-8"))
 ;; (mapc
 ;;  (lambda (face)
 ;;    (set-face-attribute face nil :weight 'normal))
@@ -890,4 +890,11 @@ Major mode for editing Docker’s Dockerfiles
                               (set (make-local-variable 'company-backends) '(company-go))
                               (company-mode)))
     (add-hook 'go-mode-hook 'flycheck-mode))
+#+END_SRC
+** jinja2 / nunjucks
+#+BEGIN_SRC emacs-lisp
+(use-package jinja2-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . jinja2-mode)))
 #+END_SRC
