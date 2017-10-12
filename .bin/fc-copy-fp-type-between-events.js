@@ -36,6 +36,7 @@ request.get(DB_FROM + '/_design/victorinox/_view/query'
             delete row.doc._rev;
             return row.doc;
         });
+        console.log('Found ' + docs.length + ' docs');
         request.post({
             url: DB_TO + '/_bulk_docs',
             json: true,

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EID_TEST_WS=d9917c4755c70ce9f485d6c217000e7b
+export EID_TEST_WS=49fc19d6d21b31cd648ac937560c28e5
 export EID=$EID_TEST_WS
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"
