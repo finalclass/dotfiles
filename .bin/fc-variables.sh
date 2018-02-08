@@ -1,11 +1,9 @@
 #!/bin/bash
 
-export EID_TEST_WS=49fc19d6d21b31cd648ac937560c28e5
-export EID=$EID_TEST_WS
+export EID=7f93296c6b4ec0481e4acf0f841157ef
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"
 export WEBAPP_ENABLED=true
-# export WEBAPP_URL=http://10.121.7.145:8181
 export WEBAPP_URL=http://localhost:8181
 export STG_EID="34e6c0a772cc3cc6b847f91e00b29688"
 export STG_DS="http://ds.4pax.com"

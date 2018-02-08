@@ -23,10 +23,11 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
 export EDITOR=emacsclient
 
+export BACKEND_CONF=/home/sel/Documents/spotme/devnode/backend-devnode.json
 export GOROOT=/usr/lib/go           
 export GOPATH=~/Documents/go/src
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin
+export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault-pass
 
 if ! pgrep -u $USER ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing

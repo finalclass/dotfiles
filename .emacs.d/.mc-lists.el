@@ -3,11 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        indent-for-tab-command
         ivy-backward-delete-char
         kill-region
         mwim-beginning-of-code-or-line
         mwim-end-of-code-or-line
         org-self-insert-command
+        org-yank
         swiper
         typescript-insert-and-indent
         ))

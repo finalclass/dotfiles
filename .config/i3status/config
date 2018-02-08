@@ -13,13 +13,13 @@ order += "volume master"
 order += "time"
 
 wireless _first_ {
-    format_up = " %essid (%quality) (%ip)"
-    format_down = "  down"
+    format_up = "%essid (%quality) (%ip)"
+    format_down = " down"
     color_good = "#ffffff"
 }
 
 battery 0 {
-    format = " %status %percentage %remaining %consumption"
+    format = "%status %percentage %remaining %consumption"
     path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = "30"
     threshold_type = "time"
@@ -28,11 +28,11 @@ battery 0 {
 }
 
 time {
-    format = " (%Y-%m-%d)%H:%M"
+    format = "(%Y-%m-%d)%H:%M"
 }
 
 volume master {
-    format = " %volume"
+    format = "%volume"
     format_muted = ""
     device = "default"
     mixer = "Master"
@@ -47,5 +47,5 @@ path_exists harold {
 }
 
 disk /home {
-    format = " %avail"
+    format = "%avail"
 }

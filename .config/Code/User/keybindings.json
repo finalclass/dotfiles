@@ -48,6 +48,14 @@
         "command": "workbench.action.nextEditor"
     },
     {
+        "key": "alt+left",
+        "command": "workbench.action.previousEditor"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.nextEditor"
+    },
+    {
         "key": "alt+up",
         "command": "scrollLineUp",
         "when": "editorTextFocus"
@@ -104,5 +112,9 @@
         "key": "shift+alt+left",
         "command": "-editor.action.smartSelect.shrink",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+m r",
+        "command": "workbench.files.action.showActiveFileInExplorer"
     }
 ]

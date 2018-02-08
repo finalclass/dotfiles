@@ -28,5 +28,20 @@
     "typescript.check.tscVersion": false,
     "typescript.implementationsCodeLens.enabled": true,
     "window.menuBarVisibility": "toggle",
-    "erlang.enableExperimentalAutoComplete": true
+    "erlang.enableExperimentalAutoComplete": true,
+    "rust.mode": "rls",
+
+    "[rust]": {
+
+    },
+    "rust.rustup": {
+        "toolchain": "nightly-2017-11-30-x86_64-unknown-linux-gnu",
+        "nightlyToolchain": "nightly-2017-11-30-x86_64-unknown-linux-gnu"
+    },
+    "rust.rls": {
+        "useRustfmt": true
+    },
+    "workbench.colorTheme": "dark+(elixir)",
+    "git.autofetch": true,
+    "workbench.list.openMode": "doubleClick"
 }

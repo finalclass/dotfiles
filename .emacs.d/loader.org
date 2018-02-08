@@ -370,10 +370,16 @@ for ribbon and windmove compatibility
      '(company-idle-delay 0)
      '(company-echo-delay 0)
      '(company-global-modes '(not git-commit-mode))
-     '(company-minimum-prefix-length 0))
+     '(company-minimum-prefix-length 1))
     
     (setq company-dabbrev-downcase nil)
     :bind (("C-;" . company-complete)))
+
+  (custom-set-variables
+   '(company-idle-delay 0)
+   '(company-echo-delay 0)
+   '(company-global-modes '(not git-commit-mode))
+   '(company-minimum-prefix-length 1))
 #+END_SRC
 
 * comments
@@ -695,6 +701,10 @@ Create a new frame
 (require 'edts-start)
 (setq edts-man-root "~/.emacs.d/edts/doc/19.3")
 #+END_SRC
+** Elixir
+#+BEGIN_SRC emacs-lisp
+(use-package elixir-mode :ensure t)
+#+END_SRC
 ** php
 #+BEGIN_SRC emacs-lisp
 (use-package company-php :ensure t)
@@ -704,7 +714,7 @@ Create a new frame
 #+BEGIN_SRC emacs-lisp
       (use-package emmet-mode
         :ensure t
-        :bind (("S-SPC" . emmet-expand-line)))
+        :bind (("C-;" . emmet-expand-line)))
 
       (use-package web-mode
         :ensure t
@@ -753,8 +763,8 @@ Create a new frame
 #+END_SRC
 
 ** JavaScript
-
 #+BEGIN_SRC emacs-lisp
+  (use-package flycheck :ensure t)
   (use-package tern :ensure t)
   (use-package js2-mode
     :ensure t
@@ -780,16 +790,27 @@ Create a new frame
     (add-hook 'js2-mode-hook
               (lambda ()
                 (hs-minor-mode +1)
+                (flycheck-mode t)
                 (prettify-symbols-mode t)
                 (auto-complete-mode t)
                 (tern-mode t)
                 (tern-ac-setup)))
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(javascript-jshint)))
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (setq-default flycheck-temp-prefix ".flycheck")
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(json-jsonlist)))
     (eval-after-load 'tern
       '(setq tern-command (append tern-command '("--no-port-file")))))
 #+END_SRC
 ** JSON
 #+BEGIN_SRC emacs-lisp
-(add-hook 'json-mode-hook 'lambda () (setq js-indent-level 4))
+(add-hook 'json-mode-hook (lambda () (progn 
+  (setq js-indent-level 4) 
+  (flycheck-mode))))
 #+END_SRC
 ** Markdown
 #+BEGIN_SRC emacs-lisp
@@ -898,3 +919,16 @@ Major mode for editing Docker’s Dockerfiles
   :init
   (add-to-list 'auto-mode-alist '("\\.html\\'" . jinja2-mode)))
 #+END_SRC
+** Rust
+#+BEGIN_SRC emacs-lisp
+(use-package rust-mode
+  :ensure t
+  :init
+  (autoload 'rust-mode "rust-mode" nil t)
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
+(use-package toml-mode
+   :ensure t
+   :init
+   (add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode)))
+#+END_SRC
+
