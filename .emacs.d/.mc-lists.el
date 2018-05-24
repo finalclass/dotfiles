@@ -6,6 +6,7 @@
         indent-for-tab-command
         ivy-backward-delete-char
         kill-region
+        markdown-exdent-or-delete
         mwim-beginning-of-code-or-line
         mwim-end-of-code-or-line
         org-self-insert-command

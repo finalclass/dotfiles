@@ -24,10 +24,14 @@ export PS1='\w$(__git_ps1 " (%s)")\$ '
 export EDITOR=emacsclient
 
 export BACKEND_CONF=/home/sel/Documents/spotme/devnode/backend-devnode.json
+export DEVNODE=1
 export GOROOT=/usr/lib/go           
 export GOPATH=~/Documents/go/src
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin
 export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault-pass
+alias wine-bnet="WINEPREFIX=/home/$USER/wine/bnet wine"
+alias wine-d2="WINEPREFIX=/home/$USER/wine/d2 wine"
+alias wine-d1="WINEPREFIX=/home/$USER/wine/d1 wine"
 
 if ! pgrep -u $USER ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing
@@ -106,3 +110,4 @@ export SDKMAN_DIR="/home/sel/.sdkman"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bind -x '"\C-p": ec $(fzf);'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

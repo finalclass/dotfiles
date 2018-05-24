@@ -1,8 +1,10 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "jshint.enable": true,
-    "jshint.config": "/home/sel/.bin/.jshintrc",
+    "debug.hideActionBar": true,
+    "explorer.openEditors.visible": 0,
     "editor.renderWhitespace": "none",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "files.trimTrailingWhitespace": true,
     "editor.trimAutoWhitespace": true,
     "editor.autoClosingBrackets": false,
@@ -25,15 +27,11 @@
             "handlerUrl": "http://localhost.backstage.4pax.com/api/v1/eid/0b2a5c2a203f9ba64bbb75d141036634/nodehandlers"
         }
     },
-    "typescript.check.tscVersion": false,
     "typescript.implementationsCodeLens.enabled": true,
     "window.menuBarVisibility": "toggle",
     "erlang.enableExperimentalAutoComplete": true,
     "rust.mode": "rls",
-
-    "[rust]": {
-
-    },
+    "[rust]": {},
     "rust.rustup": {
         "toolchain": "nightly-2017-11-30-x86_64-unknown-linux-gnu",
         "nightlyToolchain": "nightly-2017-11-30-x86_64-unknown-linux-gnu"
@@ -43,5 +41,11 @@
     },
     "workbench.colorTheme": "dark+(elixir)",
     "git.autofetch": true,
-    "workbench.list.openMode": "doubleClick"
+    "workbench.list.openMode": "doubleClick",
+    "workbench.statusBar.feedback.visible": false,
+    "prettier.singleQuote": true,
+    "prettier.bracketSpacing": true,
+    "editor.minimap.enabled": false,
+    // "editor.fontFamily": "DejaVu Sans Code",
+    // "editor.fontLigatures": true
 }

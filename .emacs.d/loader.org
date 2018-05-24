@@ -365,11 +365,11 @@ for ribbon and windmove compatibility
     :defer t
     :diminish company-mode
     :config
-    (global-company-mode)
+    ;; (global-company-mode)
     (custom-set-variables
      '(company-idle-delay 0)
      '(company-echo-delay 0)
-     '(company-global-modes '(not git-commit-mode))
+     ;; '(company-global-modes '(not git-commit-mode org-mode markdown-mode))
      '(company-minimum-prefix-length 1))
     
     (setq company-dabbrev-downcase nil)
@@ -455,7 +455,14 @@ Create a new frame
 #+END_SRC
 * Folding
 #+BEGIN_SRC emacs-lisp
-
+  (use-package yafolding 
+    :ensure t
+    :init
+    (define-key yafolding-mode-map (kbd "<C-S-return>") nil)
+    (define-key yafolding-mode-map (kbd "<C-M-return>") nil)
+    (define-key yafolding-mode-map (kbd "<C-return>") nil)
+    (define-key yafolding-mode-map (kbd "C--") 'yafolding-toggle-element)
+    (add-hook 'prog-mode-hook (lambda () (yafolding-mode))))
 #+END_SRC
 * Multi Cursors
 #+BEGIN_SRC emacs-lisp
@@ -703,7 +710,12 @@ Create a new frame
 #+END_SRC
 ** Elixir
 #+BEGIN_SRC emacs-lisp
-(use-package elixir-mode :ensure t)
+    (use-package alchemist
+      :ensure t
+      :config
+      (add-hook 'elixir-mode-hook
+                (lambda ()
+                  (company-mode +1))))
 #+END_SRC
 ** php
 #+BEGIN_SRC emacs-lisp
@@ -762,49 +774,79 @@ Create a new frame
     (add-hook 'js2-mode-hook #'setup-tide-mode))
 #+END_SRC
 
-** JavaScript
+** ELM
 #+BEGIN_SRC emacs-lisp
-  (use-package flycheck :ensure t)
-  (use-package tern :ensure t)
-  (use-package js2-mode
+  (use-package elm-mode
     :ensure t
     :config
-    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-    (custom-set-variables
-     '(js2-auto-indent-p t)
-     '(js2-consistent-level-indent-inner-bracket t)
-     '(js2-enter-indents-newline t)
-     '(js2-indent-level 4)
-     '(js2-indent-on-enter-key t)
-     '(js2-mode-show-strict-warnings t)
-     '(js2-strict-inconsistent-return-warning nil)
-     '(js2-strict-trailing-comma-warning nil))
-    (setq-default indent-tabs-mode nil)
-    (add-hook 'js2-mode-hook 'ac-js2-mode)
-    (defconst prettify-symbols-alist
-      '(
-        ("function" . ?λ)
-        ("return" . ?←)
-        ))
-    (global-prettify-symbols-mode +1)
-    (add-hook 'js2-mode-hook
+    (setq elm-format-on-save t)
+    (add-to-list 'company-backends 'company-elm)
+    (add-hook 'elm-mode-hook
               (lambda ()
-                (hs-minor-mode +1)
-                (flycheck-mode t)
-                (prettify-symbols-mode t)
-                (auto-complete-mode t)
-                (tern-mode t)
-                (tern-ac-setup)))
-    (setq-default flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(javascript-jshint)))
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
-    (setq-default flycheck-temp-prefix ".flycheck")
-    (setq-default flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(json-jsonlist)))
-    (eval-after-load 'tern
-      '(setq tern-command (append tern-command '("--no-port-file")))))
+                (company-mode +1))))
+#+END_SRC
+** JavaScript
+#+BEGIN_SRC emacs-lisp
+    (use-package flycheck :ensure t)
+    (use-package tern :ensure t)
+    (use-package js2-mode
+      :ensure t
+      :config
+      (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+      (custom-set-variables
+       '(js2-auto-indent-p t)
+       '(js2-consistent-level-indent-inner-bracket t)
+       '(js2-enter-indents-newline t)
+       '(js2-indent-level 4)
+       '(js2-indent-on-enter-key t)
+       '(js2-mode-show-parse-errors nil)
+       '(js2-mode-show-strict-warnings nil)
+       '(js2-strict-inconsistent-return-warning nil)
+       '(js2-strict-trailing-comma-warning nil))
+      (setq-default indent-tabs-mode nil)
+     
+      (add-hook 'js-mode-hook
+                (lambda ()
+                  (push '("function" . ?λ) prettify-symbols-alist)
+                  (push '("return" . ?←) prettify-symbols-alist)
+                  ;; (push '("!==" . ?≠) prettify-symbols-alist)
+                  (push '("<=" . ?≤) prettify-symbols-alist)
+                  (push '(">=" . ?≥) prettify-symbols-alist)
+                  ;; (push '("&&" . ?∧) prettify-symbols-alist)
+                  ;; (push '("||" . ?∨) prettify-symbols-alist)
+                  ;; (push '("null" . ?∅) prettify-symbols-alist)
+                  (hs-minor-mode +1)
+                  (flycheck-mode t)
+                  (company-mode +1)
+                  (prettify-symbols-mode t)
+                  (tern-mode t)))
+      (setq-default flycheck-disabled-checkers
+                    (append flycheck-disabled-checkers
+                            '(javascript-jshint)))
+      (flycheck-add-mode 'javascript-eslint 'js-mode)
+      (flycheck-add-mode 'javascript-eslint 'web-mode)
+      (setq-default flycheck-temp-prefix ".flycheck")
+      (setq-default flycheck-disabled-checkers
+                    (append flycheck-disabled-checkers
+                            '(json-jsonlist)))
+      (eval-after-load 'tern
+        '(setq tern-command (append tern-command '("--no-port-file")))))
+  (use-package prettier-js 
+      :ensure t
+      :bind (("M-m f" . prettier-js))
+      :config
+      ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
+      ;; (add-hook 'web-mode-hook 'prettier-js-mode)
+      (setq prettier-js-args '(
+                               "--tab-width" "4"
+                               "--single-quote"
+                               "--bracket-spacing" "true"
+                               "--arrow-parens" "avoid"
+                               )))
+  (use-package company-tern
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-tern))
 #+END_SRC
 ** JSON
 #+BEGIN_SRC emacs-lisp
