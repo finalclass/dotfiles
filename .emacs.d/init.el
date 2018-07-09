@@ -18,10 +18,14 @@
  '(company-global-modes (quote (not git-commit-mode)))
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 1)
+ '(custom-safe-themes
+   (quote
+    ("3d5720f488f2ed54dd4e40e9252da2912110948366a16aef503f3e9e7dfe4915" default)))
  '(edts-inhibit-package-check t)
  '(js2-auto-indent-p t)
  '(js2-consistent-level-indent-inner-bracket t)
  '(js2-enter-indents-newline t)
+ '(js2-include-node-externs t)
  '(js2-indent-level 4)
  '(js2-indent-on-enter-key t)
  '(js2-mode-show-parse-errors nil)

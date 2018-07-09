@@ -1,6 +1,13 @@
 #+TITLE: Emacs configuration
 #+STARTUP: indent
 
+* Init
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/packages")
+(require 'hexrgb)
+(require 'frame-fns)
+(require 'faces+)
+#+END_SRC
 * use-package
 #+BEGIN_SRC emacs-lisp
 (require 'package)
@@ -26,33 +33,32 @@
 (advice-add 'package-install :before 'my-package-install-refresh-contents)
 
 #+END_SRC
-* GUI
-#+BEGIN_SRC emacs-lisp
-(use-package darcula-theme :ensure t)
-(tool-bar-mode -1)
-(set-frame-font "Inconsolata-8")
-(add-to-list 'default-frame-alist
-             '(font . "Inconsolata-8"))
-;; (mapc
-;;  (lambda (face)
-;;    (set-face-attribute face nil :weight 'normal))
-;;  (face-list))
-(setq-default line-spacing 4)
-(setq inhibit-startup-message t)
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq transient-mark-mode t)
-(setq visible-bell nil)
-(show-paren-mode t)
-(pending-delete-mode t)
-(setq ns-alternate-modifier 'meta)
-(setq ns-right-alternate-modifier nil)
-(menu-bar-mode -1)
-
-#+END_SRC
-
 * Unset leading key
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "M-m"))
+#+END_SRC
+* GUI
+#+BEGIN_SRC emacs-lisp
+  (use-package darcula-theme :ensure t)
+  (tool-bar-mode -1)
+  (set-frame-font "Inconsolata-8")
+  (add-to-list 'default-frame-alist
+               '(font . "Inconsolata-8"))
+  ;; (mapc
+  ;;  (lambda (face)
+  ;;    (set-face-attribute face nil :weight 'normal))
+  ;;  (face-list))
+  (setq-default line-spacing 4)
+  (setq inhibit-startup-message t)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (setq transient-mark-mode t)
+  (setq visible-bell nil)
+  (show-paren-mode t)
+  (pending-delete-mode t)
+  (setq ns-alternate-modifier 'meta)
+  (setq ns-right-alternate-modifier nil)
+  (menu-bar-mode -1)
+  (global-set-key (kbd "M-m k") 'revert-buffer)
 #+END_SRC
 * key-chord
 
@@ -96,12 +102,15 @@ for ribbon and windmove compatibility
    '(
      (emacs-lisp . t)
      (js . t)
-     (sh . t)
+     (shell . t)
      )
    )
 
   (custom-set-variables
    '(org-agenda-files (quote ("~/todo-home.org"))))
+
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "google-chrome-stable")
 
   (use-package org-bullets
     :ensure t
@@ -131,6 +140,12 @@ for ribbon and windmove compatibility
     (flx-ido-mode 1)
     (setq ido-use-faces nil)))
 
+#+END_SRC
+* ag
+#+BEGIN_SRC emacs-lisp
+(use-package ag
+    :ensure t
+    :bind (("M-m a g" . ag)))
 #+END_SRC
 * which-key
 #+BEGIN_SRC emacs-lisp
@@ -306,10 +321,14 @@ for ribbon and windmove compatibility
 #+BEGIN_SRC emacs-lisp
   (use-package ag
     :ensure t)
-  (use-package counsel-projectile
+  ;; (use-package counsel-projectile
+  ;;   :ensure t
+  ;;   :config
+  ;;   (counsel-projectile-on))
+  (use-package helm-projectile
     :ensure t
     :config
-    (counsel-projectile-on))
+    (helm-projectile-on))
   (use-package projectile
     :ensure t
     :init 
@@ -321,25 +340,20 @@ for ribbon and windmove compatibility
 * dired
 
 #+BEGIN_SRC emacs-lisp
-(defun mydired-sort ()
-  "Sort dired listings with directories first."
-  (save-excursion
-    (let (buffer-read-only)
-      (forward-line 2) ;; beyond dir. header
-      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-    (set-buffer-modified-p nil)))
+  (defun mydired-sort ()
+    "Sort dired listings with directories first."
+    (save-excursion
+      (let (buffer-read-only)
+        (forward-line 2) ;; beyond dir. header
+        (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+      (set-buffer-modified-p nil)))
 
-(defadvice dired-readin
-    (after dired-after-updating-hook first () activate)
-  "Sort dired listings with directories first before adding marks."
-  (mydired-sort))
+  (defadvice dired-readin
+      (after dired-after-updating-hook first () activate)
+    "Sort dired listings with directories first before adding marks."
+    (mydired-sort))
 
-(use-package dired+
-  :ensure t
-  :init
-  (setq dired-dwim-target t)
-  (setq dired-details-propagate-flag t))
-
+    (require 'dired+)
 #+END_SRC
 * recent files
 #+BEGIN_SRC emacs-lisp
@@ -348,14 +362,15 @@ for ribbon and windmove compatibility
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+(use-package counsel :ensure t)
+
 (use-package ivy
     :ensure t
     :bind (("M-m b" . ivy-switch-buffer))
     :config
       (setq ivy-use-virtual-buffers t)
       (setq ivy-count-format "(%d/%d) ")
-      (ivy-mode 1)
-      (use-package counsel :ensure t))
+      (ivy-mode 1))
 #+END_SRC
 * company
 
@@ -443,15 +458,13 @@ Create a new frame
 #+END_SRC
 ** window size (doremi)
 #+BEGIN_SRC emacs-lisp
-  (use-package doremi
-    :ensure t
-    :config
-    (use-package doremi-frm :ensure t)
-    (use-package doremi-cmd :ensure t)
-    :bind (("M-m s <right>" . doremi-window-width+)
-           ("M-m s <left>" . doremi-window-width+)
-           ("M-m s <up>" . doremi-window-height+)
-           ("M-m s <down>" . doremi-window-height+)))
+(require 'doremi)
+(require 'doremi-cmd)
+(require 'doremi-frm)
+(global-set-key (kbd "M-m s <right>") 'doremi-window-width+)
+(global-set-key (kbd "M-m s <left>") 'doremi-window-width+)
+(global-set-key (kbd "M-m s <up>") 'doremi-window-height+)
+(global-set-key (kbd "M-m s <down>") 'doremi-window-height+)
 #+END_SRC
 * Folding
 #+BEGIN_SRC emacs-lisp
@@ -710,12 +723,15 @@ Create a new frame
 #+END_SRC
 ** Elixir
 #+BEGIN_SRC emacs-lisp
-    (use-package alchemist
-      :ensure t
-      :config
-      (add-hook 'elixir-mode-hook
-                (lambda ()
-                  (company-mode +1))))
+  (use-package alchemist
+    :ensure t
+    :bind (
+           :map elixir-mode-map
+           ("M-m f" . elixir-format))
+    :config
+    (add-hook 'elixir-mode-hook
+              (lambda ()
+                (company-mode +1))))
 #+END_SRC
 ** php
 #+BEGIN_SRC emacs-lisp
@@ -724,31 +740,34 @@ Create a new frame
 #+END_SRC
 ** HTML
 #+BEGIN_SRC emacs-lisp
-      (use-package emmet-mode
-        :ensure t
-        :bind (("C-;" . emmet-expand-line)))
+  (use-package web-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.xhtml?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.html.eex?\\'" . web-mode))
+    (defun my-web-mode-hook ()
+      "Hooks for Web mode."
+      (setq web-mode-enable-auto-closing t)
+      (setq web-mode-enable-auto-quoting t)
+      (setq web-mode-enable-current-element-highlight t)
+      (setq web-mode-enable-current-column-highlight t)
+      (setq web-mode-markup-indent-offset 2))
 
-      (use-package web-mode
-        :ensure t
-        :config
-        (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.xhtml?\\'" . web-mode))
-        (defun my-web-mode-hook ()
-          "Hooks for Web mode."
-          (setq web-mode-enable-auto-closing t)
-          (setq web-mode-enable-auto-quoting t)
-          (setq web-mode-enable-current-element-highlight t)
-          (setq web-mode-enable-current-column-highlight t)
-          (setq web-mode-markup-indent-offset 2))
+    (add-hook 'web-mode-hook  'my-web-mode-hook))
 
-        (add-hook 'web-mode-hook  'my-web-mode-hook))
+  (use-package emmet-mode
+    :ensure t
+    :config
+    (add-hook 'web-mode-hook '(lambda () (emmet-mode))))
+
 #+END_SRC
 ** TypeScript
 #+BEGIN_SRC emacs-lisp
@@ -778,6 +797,9 @@ Create a new frame
 #+BEGIN_SRC emacs-lisp
   (use-package elm-mode
     :ensure t
+    :bind (
+           :map elm-mode-map
+           ("M-m f" . elm-mode-format-buffer))
     :config
     (setq elm-format-on-save t)
     (add-to-list 'company-backends 'company-elm)
@@ -802,6 +824,7 @@ Create a new frame
        '(js2-mode-show-parse-errors nil)
        '(js2-mode-show-strict-warnings nil)
        '(js2-strict-inconsistent-return-warning nil)
+       '(js2-include-node-externs t)
        '(js2-strict-trailing-comma-warning nil))
       (setq-default indent-tabs-mode nil)
      
@@ -884,18 +907,15 @@ Create a new frame
 Emacs interface to Docker
 
 #+BEGIN_SRC emacs-lisp
-(use-package docker
-  :ensure t
-  :diminish docker-mode
-  :config
-  (docker-global-mode))
+;;(use-package docker
+  ;;:ensure t)
 #+END_SRC
 
 TRAMP integration for docker containers
 
 #+BEGIN_SRC emacs-lisp
-(use-package docker-tramp
-  :ensure t)
+;;(use-package docker-tramp
+  ;;:ensure t)
 #+END_SRC
 
 Major mode for editing Docker’s Dockerfiles
@@ -956,10 +976,10 @@ Major mode for editing Docker’s Dockerfiles
 #+END_SRC
 ** jinja2 / nunjucks
 #+BEGIN_SRC emacs-lisp
-(use-package jinja2-mode
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.html\\'" . jinja2-mode)))
+;; (use-package jinja2-mode
+;;  :ensure t
+;;  :init
+;;  (add-to-list 'auto-mode-alist '("\\.html\\'" . jinja2-mode)))
 #+END_SRC
 ** Rust
 #+BEGIN_SRC emacs-lisp

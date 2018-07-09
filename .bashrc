@@ -21,7 +21,7 @@ export NVM_DIR="/home/sel/.nvm"
 export PATH=$PATH:~/.bin:~/Documents/go/bin:~/AppImages:~/.cache/rebar3/bin
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
-export EDITOR=emacsclient
+export EDITOR="emacsclient -c -a emacs"
 
 export BACKEND_CONF=/home/sel/Documents/spotme/devnode/backend-devnode.json
 export DEVNODE=1

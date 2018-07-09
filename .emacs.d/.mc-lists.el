@@ -6,7 +6,9 @@
         indent-for-tab-command
         ivy-backward-delete-char
         kill-region
+        markdown-cycle
         markdown-exdent-or-delete
+        markdown-outdent-or-delete
         mwim-beginning-of-code-or-line
         mwim-end-of-code-or-line
         org-self-insert-command
@@ -20,6 +22,7 @@
         fc-deploy
         handle-switch-frame
         ido-find-file
+        org-return-indent
         scroll-down-line
         scroll-up-line
         wdired-finish-edit
