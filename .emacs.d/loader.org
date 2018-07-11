@@ -354,6 +354,10 @@ for ribbon and windmove compatibility
     (mydired-sort))
 
     (require 'dired+)
+
+  (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
+  (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file
+
 #+END_SRC
 * recent files
 #+BEGIN_SRC emacs-lisp
