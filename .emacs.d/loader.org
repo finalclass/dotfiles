@@ -167,6 +167,10 @@ for ribbon and windmove compatibility
       (global-set-key (kbd "<home>") 'mwim-beginning-of-code-or-line)
       (global-set-key (kbd "<end>") 'mwim-end-of-code-or-line)))
 #+END_SRC
+* whitespace cleanup
+#+BEGIN_SRC elisp
+(global-set-key (kbd "M-m w") `whitespace-cleanup)
+#+END_SRC
 * move between buffers
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "<M-left>") 'previous-buffer)
@@ -877,9 +881,12 @@ Create a new frame
 #+END_SRC
 ** JSON
 #+BEGIN_SRC emacs-lisp
-(add-hook 'json-mode-hook (lambda () (progn 
-  (setq js-indent-level 4) 
-  (flycheck-mode))))
+  (use-package json-mode
+  :ensure t)
+
+  ;; (add-hook 'json-mode-hook (lambda () (progn 
+    ;; (setq js-indent-level 4) 
+    ;; (flycheck-mode))))
 #+END_SRC
 ** Markdown
 #+BEGIN_SRC emacs-lisp

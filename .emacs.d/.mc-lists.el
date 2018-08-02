@@ -22,6 +22,7 @@
         fc-deploy
         handle-switch-frame
         ido-find-file
+        new-frame
         org-return-indent
         scroll-down-line
         scroll-up-line
