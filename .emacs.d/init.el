@@ -22,6 +22,7 @@
    (quote
     ("3d5720f488f2ed54dd4e40e9252da2912110948366a16aef503f3e9e7dfe4915" default)))
  '(edts-inhibit-package-check t)
+ '(js-indent-level 4)
  '(js2-auto-indent-p t)
  '(js2-consistent-level-indent-inner-bracket t)
  '(js2-enter-indents-newline t)
@@ -32,13 +33,15 @@
  '(js2-mode-show-strict-warnings t)
  '(js2-strict-inconsistent-return-warning nil)
  '(js2-strict-trailing-comma-warning nil)
+ '(js2-toggle-warnings-and-errors nil)
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (json-mode elm-mode alchemist js-doc prettier-js prettier discover yafolding espresso toml-mode rust-mode jinja2-mode jinja2 yasnippet yaml-mode which-key web-mode use-package undo-tree tide tern smex popwin org-bullets mwim multiple-cursors multi-term markdown-preview-mode magit key-chord js2-mode jade-mode ido-vertical-mode ido-at-point hl-spotlight highlight-current-line helm-swoop go-complete go-autocomplete flx-ido expand-region erlang eproject emmet-mode editorconfig doremi-frm doremi-cmd dockerfile-mode docker dired+ darcula-theme counsel-projectile company-restclient company-php company-go coffee-mode ag))))
+    (skewer-mode simple-httpd indium json-mode elm-mode alchemist js-doc prettier-js prettier discover yafolding espresso toml-mode rust-mode jinja2-mode jinja2 yasnippet yaml-mode which-key web-mode use-package undo-tree tide tern smex popwin org-bullets mwim multiple-cursors multi-term markdown-preview-mode magit key-chord js2-mode jade-mode ido-vertical-mode ido-at-point hl-spotlight highlight-current-line helm-swoop go-complete go-autocomplete flx-ido expand-region erlang eproject emmet-mode editorconfig doremi-frm doremi-cmd dockerfile-mode docker dired+ darcula-theme counsel-projectile company-restclient company-php company-go coffee-mode ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(trailing-whitespace ((t (:foreground "#333333")))))
+(put 'narrow-to-region 'disabled nil)

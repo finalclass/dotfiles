@@ -222,3 +222,4 @@ exec_always fc-auto-xps13-displays.sh
 exec terminator
 exec google-chrome-stable
 exec emacs
+exec blueberry-tray

@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        beginning-of-buffer
         indent-for-tab-command
         ivy-backward-delete-char
         kill-region
@@ -12,7 +13,11 @@
         mwim-beginning-of-code-or-line
         mwim-end-of-code-or-line
         org-self-insert-command
+        org-todo
         org-yank
+        revert-buffer
+        search-forward
+        smex
         swiper
         typescript-insert-and-indent
         ))
@@ -27,4 +32,6 @@
         scroll-down-line
         scroll-up-line
         wdired-finish-edit
+        yaml-electric-backspace
+        yaml-electric-dash-and-dot
         ))

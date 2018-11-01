@@ -19,11 +19,12 @@
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
+  (package-install 'use-package)
+  (package-install diminish))
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
+;(require 'diminish)
 (require 'bind-key)
 
 (defun my-package-install-refresh-contents (&rest args)
@@ -147,6 +148,14 @@ for ribbon and windmove compatibility
     :ensure t
     :bind (("M-m a g" . ag)))
 #+END_SRC
+* Timestamp
+#+BEGIN_SRC emacs-lisp
+  (defun insert-time-stamp ()
+    (interactive)
+    (insert
+     (format-time-string "%s")))
+  (global-set-key (kbd "M-m t") 'insert-time-stamp)
+#+END_SRC
 * which-key
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
@@ -168,8 +177,13 @@ for ribbon and windmove compatibility
       (global-set-key (kbd "<end>") 'mwim-end-of-code-or-line)))
 #+END_SRC
 * whitespace cleanup
-#+BEGIN_SRC elisp
-(global-set-key (kbd "M-m w") `whitespace-cleanup)
+#+BEGIN_SRC emacs-lisp
+  (defun my-whitespace-cleanup ()
+      (interactive)
+    (whitespace-cleanup)
+    (message "whitespace-cleanup completed"))
+
+  (global-set-key (kbd "M-m w") `my-whitespace-cleanup)
 #+END_SRC
 * move between buffers
 #+BEGIN_SRC emacs-lisp
@@ -276,6 +290,8 @@ for ribbon and windmove compatibility
 * swiper
 
 #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-m C-s") 'search-forward)
+  (global-set-key (kbd "M-m C-b") 'search-backward)
   (use-package swiper
        :diminish ivy-mode
        :ensure t
@@ -335,9 +351,8 @@ for ribbon and windmove compatibility
     (helm-projectile-on))
   (use-package projectile
     :ensure t
-    :init 
-    (define-key projectile-mode-map projectile-keymap-prefix nil)
-    (define-key projectile-mode-map (kbd "M-m p") 'projectile-command-map) 
+    :init
+    (define-key projectile-mode-map (kbd "M-m p") 'projectile-command-map)
     :config
     (projectile-mode))
 #+END_SRC
@@ -394,7 +409,7 @@ for ribbon and windmove compatibility
      '(company-echo-delay 0)
      ;; '(company-global-modes '(not git-commit-mode org-mode markdown-mode))
      '(company-minimum-prefix-length 1))
-    
+
     (setq company-dabbrev-downcase nil)
     :bind (("C-;" . company-complete)))
 
@@ -476,7 +491,7 @@ Create a new frame
 #+END_SRC
 * Folding
 #+BEGIN_SRC emacs-lisp
-  (use-package yafolding 
+  (use-package yafolding
     :ensure t
     :init
     (define-key yafolding-mode-map (kbd "<C-S-return>") nil)
@@ -694,7 +709,7 @@ Create a new frame
 (global-set-key (kbd "M-m e n") 'next-error)
 (global-set-key (kbd "M-m e p") 'previous-error)
 #+END_SRC
-* Undo tree
+* Undo tree=
 #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
@@ -705,6 +720,7 @@ Create a new frame
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
     :ensure t
+    :bind (("M-m c y" . yas-expand))
     :config
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (yas-global-mode 1))
@@ -817,63 +833,65 @@ Create a new frame
 #+END_SRC
 ** JavaScript
 #+BEGIN_SRC emacs-lisp
-    (use-package flycheck :ensure t)
-    (use-package tern :ensure t)
-    (use-package js2-mode
-      :ensure t
-      :config
-      (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-      (custom-set-variables
-       '(js2-auto-indent-p t)
-       '(js2-consistent-level-indent-inner-bracket t)
-       '(js2-enter-indents-newline t)
-       '(js2-indent-level 4)
-       '(js2-indent-on-enter-key t)
-       '(js2-mode-show-parse-errors nil)
-       '(js2-mode-show-strict-warnings nil)
-       '(js2-strict-inconsistent-return-warning nil)
-       '(js2-include-node-externs t)
-       '(js2-strict-trailing-comma-warning nil))
-      (setq-default indent-tabs-mode nil)
-     
-      (add-hook 'js-mode-hook
-                (lambda ()
-                  (push '("function" . ?λ) prettify-symbols-alist)
-                  (push '("return" . ?←) prettify-symbols-alist)
-                  ;; (push '("!==" . ?≠) prettify-symbols-alist)
-                  (push '("<=" . ?≤) prettify-symbols-alist)
-                  (push '(">=" . ?≥) prettify-symbols-alist)
-                  ;; (push '("&&" . ?∧) prettify-symbols-alist)
-                  ;; (push '("||" . ?∨) prettify-symbols-alist)
-                  ;; (push '("null" . ?∅) prettify-symbols-alist)
-                  (hs-minor-mode +1)
-                  (flycheck-mode t)
-                  (company-mode +1)
-                  (prettify-symbols-mode t)
-                  (tern-mode t)))
-      (setq-default flycheck-disabled-checkers
-                    (append flycheck-disabled-checkers
-                            '(javascript-jshint)))
-      (flycheck-add-mode 'javascript-eslint 'js-mode)
-      (flycheck-add-mode 'javascript-eslint 'web-mode)
-      (setq-default flycheck-temp-prefix ".flycheck")
-      (setq-default flycheck-disabled-checkers
-                    (append flycheck-disabled-checkers
-                            '(json-jsonlist)))
-      (eval-after-load 'tern
-        '(setq tern-command (append tern-command '("--no-port-file")))))
-  (use-package prettier-js 
-      :ensure t
-      :bind (("M-m f" . prettier-js))
-      :config
-      ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
-      ;; (add-hook 'web-mode-hook 'prettier-js-mode)
-      (setq prettier-js-args '(
-                               "--tab-width" "4"
-                               "--single-quote"
-                               "--bracket-spacing" "true"
-                               "--arrow-parens" "avoid"
-                               )))
+  (use-package flycheck :ensure t)
+  (use-package tern :ensure t)
+  (use-package js2-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+    (custom-set-variables
+     '(js2-auto-indent-p t)
+     '(js2-consistent-level-indent-inner-bracket t)
+     '(js2-enter-indents-newline t)
+     '(js2-indent-level 4)
+     '(js2-basic-offset 4) ; this sets number of spaces
+     '(js2-indent-on-enter-key t)
+     '(js2-mode-show-parse-errors nil)
+     '(js2-mode-show-strict-warnings nil)
+     '(js2-toggle-warnings-and-errors)
+     '(js2-strict-inconsistent-return-warning nil)
+     '(js2-include-node-externs t)
+     '(js2-strict-trailing-comma-warning nil))
+    (setq-default indent-tabs-mode nil)
+
+    (add-hook 'js-mode-hook
+              (lambda ()
+                (push '("function" . ?λ) prettify-symbols-alist)
+                (push '("return" . ?←) prettify-symbols-alist)
+                ;; (push '("!==" . ?≠) prettify-symbols-alist)
+                (push '("<=" . ?≤) prettify-symbols-alist)
+                (push '(">=" . ?≥) prettify-symbols-alist)
+                ;; (push '("&&" . ?∧) prettify-symbols-alist)
+                ;; (push '("||" . ?∨) prettify-symbols-alist)
+                ;; (push '("null" . ?∅) prettify-symbols-alist)
+                (hs-minor-mode +1)
+                (flycheck-mode t)
+                (company-mode +1)
+                (prettify-symbols-mode t)
+                (tern-mode t)))
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(javascript-jshint)))
+    (flycheck-add-mode 'javascript-eslint 'js-mode)
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (setq-default flycheck-temp-prefix ".flycheck")
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(json-jsonlist)))
+    (eval-after-load 'tern
+      '(setq tern-command (append tern-command '("--no-port-file")))))
+  (use-package prettier-js
+    :ensure t
+    :bind (("M-m f" . prettier-js))
+    :config
+    ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
+    ;; (add-hook 'web-mode-hook 'prettier-js-mode)
+    (setq prettier-js-args '(
+                             "--tab-width" "4"
+                             "--single-quote"
+                             "--bracket-spacing" "true"
+                             "--arrow-parens" "avoid"
+                             )))
   (use-package company-tern
     :ensure t
     :config
@@ -884,8 +902,8 @@ Create a new frame
   (use-package json-mode
   :ensure t)
 
-  ;; (add-hook 'json-mode-hook (lambda () (progn 
-    ;; (setq js-indent-level 4) 
+  ;; (add-hook 'json-mode-hook (lambda () (progn
+    ;; (setq js-indent-level 4)
     ;; (flycheck-mode))))
 #+END_SRC
 ** Markdown
@@ -957,9 +975,9 @@ Major mode for editing Docker’s Dockerfiles
 ** Go
 #+BEGIN_SRC emacs-lisp
   (defun my-go-mode-hook ()
-                                          ; Call Gofmt before saving                                                    
+                                          ; Call Gofmt before saving
     (add-hook 'before-save-hook 'gofmt-before-save)
-                                          ; Godef jump key binding                                                      
+                                          ; Godef jump key binding
     (local-set-key (kbd "M-.") 'godef-jump)
     (local-set-key (kbd "M-*") 'pop-tag-mark))
 
@@ -1004,4 +1022,3 @@ Major mode for editing Docker’s Dockerfiles
    :init
    (add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode)))
 #+END_SRC
-
