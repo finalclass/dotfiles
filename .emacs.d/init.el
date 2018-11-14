@@ -37,7 +37,7 @@
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote
-    (skewer-mode simple-httpd indium json-mode elm-mode alchemist js-doc prettier-js prettier discover yafolding espresso toml-mode rust-mode jinja2-mode jinja2 yasnippet yaml-mode which-key web-mode use-package undo-tree tide tern smex popwin org-bullets mwim multiple-cursors multi-term markdown-preview-mode magit key-chord js2-mode jade-mode ido-vertical-mode ido-at-point hl-spotlight highlight-current-line helm-swoop go-complete go-autocomplete flx-ido expand-region erlang eproject emmet-mode editorconfig doremi-frm doremi-cmd dockerfile-mode docker dired+ darcula-theme counsel-projectile company-restclient company-php company-go coffee-mode ag))))
+    (org-tree-slide epresent skewer-mode simple-httpd indium json-mode elm-mode alchemist js-doc prettier-js prettier discover yafolding espresso toml-mode rust-mode jinja2-mode jinja2 yasnippet yaml-mode which-key web-mode use-package undo-tree tide tern smex popwin org-bullets mwim multiple-cursors multi-term markdown-preview-mode magit key-chord js2-mode jade-mode ido-vertical-mode ido-at-point hl-spotlight highlight-current-line helm-swoop go-complete go-autocomplete flx-ido expand-region erlang eproject emmet-mode editorconfig doremi-frm doremi-cmd dockerfile-mode docker dired+ darcula-theme counsel-projectile company-restclient company-php company-go coffee-mode ag))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

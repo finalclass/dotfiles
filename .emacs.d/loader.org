@@ -117,7 +117,12 @@ for ribbon and windmove compatibility
     :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+  
 #+END_SRC
+
+#+RESULTS:
+: t
 
 * ido-mode
 
