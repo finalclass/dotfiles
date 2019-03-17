@@ -736,20 +736,6 @@ Create a new frame
   (global-set-key (kbd "M-<down>") 'scroll-up-line)
 #+END_SRC
 * Languges
-** erlang
-#+BEGIN_SRC emacs-lisp
-(setq edts-inhibit-package-check t)
-
-(use-package erlang :ensure t)
-(use-package f :ensure t)
-(use-package s :ensure t)
-(use-package popup :ensure t)
-(use-package eproject :ensure t)
-
-(add-to-list 'load-path "~/.emacs.d/edts/")
-(require 'edts-start)
-(setq edts-man-root "~/.emacs.d/edts/doc/19.3")
-#+END_SRC
 ** Elixir
 #+BEGIN_SRC emacs-lisp
   (use-package alchemist
@@ -761,6 +747,20 @@ Create a new frame
     (add-hook 'elixir-mode-hook
               (lambda ()
                 (company-mode +1))))
+#+END_SRC
+** erlang
+#+BEGIN_SRC emacs-lisp
+  (setq edts-inhibit-package-check t)
+
+  (use-package erlang :ensure t)
+  (use-package f :ensure t)
+  (use-package s :ensure t)
+  (use-package popup :ensure t)
+  (use-package eproject :ensure t)
+
+  (add-to-list 'load-path "~/.emacs.d/edts/")
+  (require 'edts-start)
+  (setq edts-man-root "~/.emacs.d/edts/doc/19.3")
 #+END_SRC
 ** php
 #+BEGIN_SRC emacs-lisp
@@ -887,7 +887,9 @@ Create a new frame
       '(setq tern-command (append tern-command '("--no-port-file")))))
   (use-package prettier-js
     :ensure t
-    :bind (("M-m f" . prettier-js))
+    :bind (
+           :map js-mode-map
+           ("M-m f" . prettier-js))
     :config
     ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
     ;; (add-hook 'web-mode-hook 'prettier-js-mode)

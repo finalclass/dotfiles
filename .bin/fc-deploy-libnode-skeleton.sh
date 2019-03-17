@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/sel/Documents/spotme/backend/lib/task-queue/lib/tasks/event-creation/packages
+cd   /home/sel/Documents/spotme/backend/lib/interfaces/storage/bootstrap/
 cp libnode-skeleton /tmp/package -r
 cd /tmp
 fc-deploy.sh

@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         beginning-of-buffer
+        emmet-expand-line
         indent-for-tab-command
         ivy-backward-delete-char
         kill-region
@@ -12,7 +13,10 @@
         markdown-outdent-or-delete
         mwim-beginning-of-code-or-line
         mwim-end-of-code-or-line
+        org-beginning-of-line
+        org-cycle
         org-self-insert-command
+        org-shiftmetaleft
         org-todo
         org-yank
         revert-buffer

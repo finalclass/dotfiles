@@ -26,6 +26,7 @@
 !.emacs.d/lib/*
 !.emacs.d/snippets
 !.emacs.d/snippets/**/*
+!.emacs.d/packages/**/*
 
 !.spacemacs
 !.inputrc
