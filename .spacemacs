@@ -400,23 +400,19 @@ you should place your code here."
      -1))
 
   (defun fc-init-command (cmd)
-    (concat "source ~/.bin/fc-variables.sh && " cmd))
+    (concat "source ~/.bin/fc-variables && " cmd))
 
   (defun fc-deploy ()
     (interactive)
-    (let ((command (fc-init-command "fc-deploy.sh&")))
+    (let ((command (fc-init-command "fc-deploy&")))
       (message command)
       (shell-command command nil nil)))
 
   (defun fc-deploy-cloud ()
     (interactive)
-    (let ((command (fc-init-command "EID=$CLOUD_EID DS=$CLOUD_DS fc-deploy.sh&")))
+    (let ((command (fc-init-command "EID=$CLOUD_EID DS=$CLOUD_DS fc-deploy&")))
       (message command)
       (shell-command command "*Messages*" "*Messages*")))
-
-  (defun fc-ip ()
-    (interactive)
-    (insert (fc-shell-command "fc-ip.sh")))
 
   (defun fc-env (shell-environment-variable-name)
     (fc-shell-command

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cd ~/Documents/spotme/devnode
-docker-compose exec redis redis-cli -p 7000 -p 7001 -p 7002 -p 7003 -p 7004 -p 7005 $@

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xdg-open https://docs.google.com/spreadsheets/d/1Uh3OaOk9MwNKhxX6SzgH7PHEBuBNeIsIOTPyhw4ZJUQ/edit

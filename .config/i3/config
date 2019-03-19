@@ -218,7 +218,7 @@ bar {
 
 # exec_always feh --bg-scale ~/Media/wallup-27135.jpg
 
-exec_always fc-auto-xps13-displays.sh
+exec_always fc-auto-xps13-displays
 
 # exec code
 exec terminator

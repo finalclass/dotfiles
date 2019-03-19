@@ -13,7 +13,7 @@ alias ec="emacsclient -c -n"
 
 source ~/.bin/git-completion.bash
 source ~/.bin/git-prompt.sh
-source ~/.bin/fc-variables.sh
+source ~/.bin/fc-variables
 
 export NVM_DIR="/home/sel/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
