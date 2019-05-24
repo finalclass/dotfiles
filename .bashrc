@@ -6,6 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
+alias ll='ls --color=auto -lh'
 alias grep='grep --color'
 alias skype="skype"
 alias dc="docker-compose"

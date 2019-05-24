@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xdg-open https://spotme.atlassian.net/jira/software/projects/EP/boards/44?label=core

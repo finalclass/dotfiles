@@ -51,7 +51,7 @@ floating_modifier $mod
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec terminator
 bindsym $mod+Ctrl+3 exec emacs
-bindsym $mod+Ctrl+1 exec chrome
+bindsym $mod+Ctrl+1 exec google-chrome-stable
 bindsym $mod+Ctrl+z exec code
 bindsym $mod+Ctrl+x exec terminator
 
@@ -161,7 +161,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # assignments (find the class with `xprop`)
 assign [class="Code"] $wsCode
 assign [class="Terminator"] $wsTerminals
-assign [class="Google-chrome"] $wsBrowsers
+assign [class="Chrome-stable"] $wsBrowsers
 assign [class="Emacs"] $wsEmacs
 
 bindsym $mod+Ctrl+Left move workspace to output left
@@ -225,3 +225,4 @@ exec terminator
 exec google-chrome-stable
 exec emacs
 exec blueberry-tray
+exec --no-startup-id dunst

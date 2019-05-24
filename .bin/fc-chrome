@@ -1,4 +1,6 @@
 #!/bin/bash
 
-google-chrome-stable --force-device-scale-factor=2.5
+# google-chrome-stable --force-device-scale-factor=2.5
+
+google-chrome-stable --disable-gpu --disable-software-rasterizer
 

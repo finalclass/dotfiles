@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const { promisify } = require('util');
+const fs = require('fs');
+
+
+async function main() {
+    const pkg1 = { path: process.argv[2] };
+    const pkg2 = { path: process.argv[3] };
+
+    if (!pkg1.path || !pkg2.path) {
+        console.error('Usage: fc-compare-deps /path/to/first-package /path/to/second-package');
+        process.exit(1);
+    }
+
+    pkg1.deps = await readDeps(pkg1);
+    pkg2.deps = await readDeps(pkg2);
+
+    Object.keys(pkg1.deps).forEach(depName => {
+        const v1 = pkg1.deps[depName];
+        const v2 = pkg2.deps[depName];
+        if (v1 !== v2 && v1 && v2) {
+            console.log('Difference: ' + depName + ' ' + v1 + ' !== ' + v2); 
+        }
+    });
+}
+
+async function readDeps(pkg) {
+    if (pkg.path.substr(-1) !== '/') {
+        pkg.path += '/';
+    } 
+    const dirs = await promisify(fs.readdir)(pkg.path + 'node_modules');
+    let versions = {};
+
+    for (let dir of dirs) {
+        const packageJsonPath = pkg.path + 'node_modules/' + dir + '/package.json';
+        const exists = await promisify(fs.exists)(packageJsonPath);
+        if (exists) {
+            const depBuff = await promisify(fs.readFile)(packageJsonPath);
+            const packageJson = JSON.parse(depBuff.toString());
+            versions[dir] = packageJson.version;    
+        }
+    }
+
+    return versions;
+}
+
+main().catch(err => {
+    console.error(err);
+    process.exit(1);
+});
+
