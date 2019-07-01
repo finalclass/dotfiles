@@ -19,6 +19,7 @@ source ~/.bin/fc-variables
 export NVM_DIR="/home/sel/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+export ANDROID_HOME="/home/sel/Android"
 export PATH=$PATH:~/.bin:~/Documents/go/bin:~/AppImages:~/.cache/rebar3/bin
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '

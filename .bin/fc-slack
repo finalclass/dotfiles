@@ -1,0 +1,3 @@
+#!/bin/bash
+
+fc-firefox-chromeless https://spotme.slack.com
