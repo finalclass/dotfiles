@@ -1,3 +1,6 @@
 [submodule ".emacs.d/distel"]
 	path = .emacs.d/distel
 	url = git@github.com:massemanet/distel.git
+[submodule ".emacs.d/purescript-mode"]
+	path = .emacs.d/purescript-mode
+	url = https://github.com/purescript-emacs/purescript-mode.git

@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+/*jshint esversion: 6*/
+
+const request = require('request');
+const debug = require('debug');
+const debugLog = debug('fc');
+
+function url(db, doc = '') {
+    return `http://admin:rm@localhost/${db}/${doc}`;
+}
+
+
+function removeDb(db) {
+    console.log('Removing DB: ' + db);
+    return new Promise((resolve, reject) => {
+        return request({
+            method: 'DELETE',
+            json: true,
+            url: url(db)
+        }, function (err, response, body) {
+            if (err) {
+                console.error(db, err);
+                return reject(err); 
+            }
+            if (body.error) {
+                return reject(new Error(db + ': ' + body.reason));
+            }
+            return resolve(body);
+        });
+    });
+}
+
+if (process.argv.length < 3) {
+    console.error('missing database name parameter');
+    process.exit(1);
+}
+
+const dbs = process.argv.slice(2);
+
+let hasError = false;
+
+Promise.all(dbs.map(db => {
+    removeDb(db)
+        .then(() => console.log('REMOVED: ' + db))
+        .catch(err => {
+            debugLog(err);
+            hasError = true;
+            console.error(err.message);
+        });
+}))
+    .then(() => {
+        if (hasError) {
+            process.exit(1);
+        }
+    });
+
+    

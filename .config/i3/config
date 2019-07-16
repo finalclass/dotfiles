@@ -54,6 +54,9 @@ bindsym $mod+Ctrl+3 exec emacs
 bindsym $mod+Ctrl+1 exec google-chrome-stable
 bindsym $mod+Ctrl+z exec code
 bindsym $mod+Ctrl+x exec terminator
+bindsym $mod+Shift+b exec fc-fix-displays
+bindsym --release Print exec --no-startup-id scrot
+bindsym --release Shift+Print exec --no-startup-id scrot -s
 
 # kill focused window
 bindsym $mod+Shift+q kill
