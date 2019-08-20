@@ -39,13 +39,14 @@
     "rust.rls": {
         "useRustfmt": true
     },
-    "workbench.colorTheme": "dark+(elixir)",
+    "workbench.colorTheme": "Material Theme",
     "git.autofetch": true,
     "workbench.list.openMode": "doubleClick",
     "workbench.statusBar.feedback.visible": false,
     "prettier.singleQuote": true,
     "prettier.bracketSpacing": true,
     "editor.minimap.enabled": false,
+    "workbench.colorCustomizations": {},
     // "editor.fontFamily": "DejaVu Sans Code",
     // "editor.fontLigatures": true
 }

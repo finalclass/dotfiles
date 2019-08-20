@@ -737,13 +737,15 @@ Create a new frame
 #+BEGIN_SRC emacs-lisp
   (use-package alchemist
     :ensure t
-    :bind (
-           :map elixir-mode-map
-           ("M-m f" . elixir-format))
     :config
+    (setq alchemist-mix-command "/usr/bin/mix")
     (add-hook 'elixir-mode-hook
-              (lambda ()
-                (company-mode +1))))
+          (lambda ()
+          (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
+          (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back)
+          (alchemist-mode 1)
+          (company-mode 1))))
+                
 #+END_SRC
 ** erlang
 #+BEGIN_SRC emacs-lisp
@@ -928,6 +930,7 @@ Create a new frame
   (use-package restclient
     :ensure t
     :config
+    (setq restclient-inhibit-cookies 1)
     (eval-after-load 'company
       '(add-to-list 'company-backends 'company-restclient))
 

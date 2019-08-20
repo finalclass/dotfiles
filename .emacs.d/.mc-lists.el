@@ -5,6 +5,7 @@
       '(
         beginning-of-buffer
         emmet-expand-line
+        helm-projectile-find-file
         indent-for-tab-command
         ivy-backward-delete-char
         kill-region
