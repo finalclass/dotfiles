@@ -739,6 +739,8 @@ Create a new frame
     :ensure t
     :config
     (setq alchemist-mix-command "/usr/bin/mix")
+    (setq alchemist-goto-erlang-source-dir "/usr/src/erlang")
+    (setq alchemist-goto-elixir-source-dir "/usr/src/elixir/")
     (add-hook 'elixir-mode-hook
           (lambda ()
           (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
