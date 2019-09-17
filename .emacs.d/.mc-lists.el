@@ -5,6 +5,7 @@
       '(
         beginning-of-buffer
         emmet-expand-line
+        erlang-electric-semicolon
         helm-projectile-find-file
         indent-for-tab-command
         ivy-backward-delete-char
