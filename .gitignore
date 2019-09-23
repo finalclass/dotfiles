@@ -4,6 +4,7 @@
 
 !.bin
 !.bin/*
+!.bin/clean_db/**/*
 .bin/node_modules
 
 !.config
