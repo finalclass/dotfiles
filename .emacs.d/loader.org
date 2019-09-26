@@ -743,10 +743,13 @@ Create a new frame
     (setq alchemist-goto-elixir-source-dir "/usr/src/elixir/")
     (add-hook 'elixir-mode-hook
           (lambda ()
-          (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
-          (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back)
-          (alchemist-mode 1)
-          (company-mode 1))))
+              (push '("|>" . ?λ) prettify-symbols-alist)
+              (push '("<<" . ?«) prettify-symbols-alist)
+              (push '(">>" . ?») prettify-symbols-alist)
+              (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
+              (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back)
+              (alchemist-mode 1)
+              (company-mode 1))))
                 
 #+END_SRC
 ** erlang
