@@ -743,14 +743,24 @@ Create a new frame
     (setq alchemist-goto-elixir-source-dir "/usr/src/elixir/")
     (add-hook 'elixir-mode-hook
           (lambda ()
-              (push '("|>" . ?λ) prettify-symbols-alist)
+              (push '("|>" . ?▸) prettify-symbols-alist)
               (push '("<<" . ?«) prettify-symbols-alist)
               (push '(">>" . ?») prettify-symbols-alist)
+              (push '("<=" . ?≤) prettify-symbols-alist)
+              (push '(">=" . ?≥) prettify-symbols-alist)
+              (push '("->" . ?→) prettify-symbols-alist)
+              (push '("<-" . ?←) prettify-symbols-alist)
+              ;; (push '("do" . ?{) prettify-symbols-alist)
+              ;; (push '("end" . ?}) prettify-symbols-alist)
+              ;; (push '("def" . ?Λ) prettify-symbols-alist)
+              ;; (push '("defp" . ?λ) prettify-symbols-alist)
+              ;; (push '("defmodule" . ?Ω) prettify-symbols-alist)
+              (prettify-symbols-mode t)
               (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
               (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back)
               (alchemist-mode 1)
               (company-mode 1))))
-                
+
 #+END_SRC
 ** erlang
 #+BEGIN_SRC emacs-lisp
