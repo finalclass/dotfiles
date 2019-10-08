@@ -13,6 +13,7 @@ alias dc="docker-compose"
 alias ec="emacsclient -c -n"
 
 source ~/.bin/git-completion.bash
+source ~/.bin/elixir-completion.bash
 source ~/.bin/git-prompt.sh
 source ~/.bin/fc-variables
 
