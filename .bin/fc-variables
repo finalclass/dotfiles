@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export EID=3210b5ea24f5cd1c5d4e58fdb31bb932
-# export EID=d8a377423d8685869a9b3962119f29d7 // XL EVENT
+# export EID=3210b5ea24f5cd1c5d4e58fdb31bb932
+export EID=d8a377423d8685869a9b3962119f29d7 # XL EVENT
 export DS="http://localhost"
 export AUTH_DB="http://admin:rm@localhost"
 export WEBAPP_ENABLED=true
