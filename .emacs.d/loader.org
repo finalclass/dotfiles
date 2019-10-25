@@ -419,6 +419,8 @@ for ribbon and windmove compatibility
       (typescript-mode . lsp)
       (erlang-mode . lsp)
       (elixir-mode . lsp)
+      :diminish
+      flymake-mode
       :commands lsp)
 
     ;; optionally
@@ -454,6 +456,9 @@ for ribbon and windmove compatibility
    '(company-minimum-prefix-length 1))
 #+END_SRC
 
+* modeline
+#+BEGIN_SRC emacs-lisp
+#+END_SRC
 * comments
 #+BEGIN_SRC emacs-lisp
   (defun toggle-comment-on-region-or-line ()
@@ -743,7 +748,7 @@ Create a new frame
 (global-set-key (kbd "M-m e n") 'next-error)
 (global-set-key (kbd "M-m e p") 'previous-error)
 #+END_SRC
-* Undo tree=
+* Undo tree
 #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
@@ -884,7 +889,6 @@ Create a new frame
 #+END_SRC
 ** JavaScript
 #+BEGIN_SRC emacs-lisp
-    (use-package flycheck :ensure t)
     (use-package js2-mode
       :ensure t
       :config
