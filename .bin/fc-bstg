@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source fc-variables
-opn https://localhost.backstage.4pax.com/event/$EID
+open-cli https://localhost.backstage.4pax.com/event/$EID
