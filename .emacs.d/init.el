@@ -34,6 +34,7 @@
  '(js2-strict-inconsistent-return-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(js2-toggle-warnings-and-errors nil)
+ '(lsp-ui-doc-use-webkit nil t)
  '(org-agenda-files (quote ("~/todo-home.org")))
  '(package-selected-packages
    (quote

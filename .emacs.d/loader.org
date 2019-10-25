@@ -413,24 +413,52 @@ for ribbon and windmove compatibility
 #+END_SRC
 * lsp-mode
 #+BEGIN_SRC emacs-lisp
-    (use-package lsp-mode
-      :hook 
-      (js2-mode . lsp)
-      (typescript-mode . lsp)
-      (erlang-mode . lsp)
-      (elixir-mode . lsp)
-      :diminish
-      flymake-mode
-      :commands lsp)
+  (use-package lsp-mode
+    :ensure t
+    :bind (("M-m r s" . lsp-rename))
+    :hook
+    (js2-mode . lsp)
+    (typescript-mode . lsp)
+    (erlang-mode . lsp)
+    (elixir-mode . lsp)
+    :diminish
+    flymake-mode
+    :commands lsp)
 
-    ;; optionally
-    (use-package lsp-ui :commands lsp-ui-mode)
-    (use-package company-lsp :commands company-lsp)
-    (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-    ;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-    ;; optionally if you want to use debugger
-    ;; (use-package dap-mode)
-    ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+  ;; optionally
+
+  (use-package lsp-ui
+    :ensure t
+    :requires lsp-mode flycheck
+    :commands lsp-ui-mode
+    :config
+    (setq lsp-ui-doc-enable t
+          lsp-ui-doc-use-childframe t
+          lsp-ui-doc-position 'top
+          lsp-ui-doc-include-signature t
+          lsp-ui-sideline-enable nil
+          lsp-ui-flycheck-enable t
+          lsp-ui-flycheck-list-position 'right
+          lsp-ui-flycheck-live-reporting t
+          lsp-ui-peek-enable t
+          lsp-ui-peek-list-width 60
+          lsp-ui-peek-peek-height 25)
+    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(setq lsp-ui-doc-use-webkit t)
+
+  (use-package company-lsp
+    :requires company
+    :commands company-lsp
+    :config
+    (push 'company-lsp company-backends))
+
+  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+
+  ;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+  ;; optionally if you want to use debugger
+  ;; (use-package dap-mode)
+  ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 #+END_SRC
 * company
 #+BEGIN_SRC emacs-lisp
@@ -730,10 +758,6 @@ Create a new frame
 
   (global-set-key (kbd "M-m r r") 'ribbon-mode-start)
 #+END_SRC
-
-#+RESULTS:
-: ribbon-mode-start
-
 * server
 #+BEGIN_SRC emacs-lisp
   (server-mode)
