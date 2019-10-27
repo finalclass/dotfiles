@@ -28,6 +28,7 @@
 !.emacs.d/snippets
 !.emacs.d/snippets/**/*
 !.emacs.d/packages/**/*
+.emacs.d/.lsp-session-v1
 
 !.spacemacs
 !.inputrc

@@ -120,11 +120,7 @@ for ribbon and windmove compatibility
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-
 #+END_SRC
-
-#+RESULTS:
-: t
 
 * ido-mode
 
@@ -412,8 +408,16 @@ for ribbon and windmove compatibility
       (setq ivy-count-format "(%d/%d) ")
       (ivy-mode 1))
 #+END_SRC
+* webkit
+#+BEGIN_SRC emacs-lisp
+(setq browse-url-browser-function 'xwidget-webkit-browse-url)
+#+END_SRC
 * lsp-mode
 #+BEGIN_SRC emacs-lisp
+  ;; (use-package eglot
+  ;;   :ensure t
+  ;;   :diminish
+  ;;   flymake-mode)
   (use-package lsp-mode
     :ensure t
     :bind (("M-m r s" . lsp-rename))
@@ -424,7 +428,9 @@ for ribbon and windmove compatibility
     (elixir-mode . lsp)
     :diminish
     flymake-mode
-    :commands lsp)
+    :commands lsp
+    :config
+    (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls"))
 
   ;; optionally
 
@@ -442,11 +448,10 @@ for ribbon and windmove compatibility
           lsp-ui-flycheck-list-position 'right
           lsp-ui-flycheck-live-reporting t
           lsp-ui-peek-enable t
+          lsp-ui-doc-use-webkit t
           lsp-ui-peek-list-width 60
           lsp-ui-peek-peek-height 25)
     (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-(setq lsp-ui-doc-use-webkit t)
 
   (use-package company-lsp
     :requires company
@@ -455,11 +460,6 @@ for ribbon and windmove compatibility
     (push 'company-lsp company-backends))
 
   (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-
-  ;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-  ;; optionally if you want to use debugger
-  ;; (use-package dap-mode)
-  ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 #+END_SRC
 * company
 #+BEGIN_SRC emacs-lisp
@@ -527,7 +527,7 @@ for ribbon and windmove compatibility
 * frames
 Create a new frame
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-n") 'new-frame)
+(global-set-key (kbd "C-n") 'make-frame-command)
 #+END_SRC
 * windows
 ** Undo configuration with C-c <left>
@@ -797,32 +797,29 @@ Create a new frame
 * Languges
 ** Elixir
 #+BEGIN_SRC emacs-lisp
-  (use-package alchemist
+  (defun init-elixir-mode ()
+    (push '("|>" . ?▸) prettify-symbols-alist)
+    (push '("<<" . ?«) prettify-symbols-alist)
+    (push '(">>" . ?») prettify-symbols-alist)
+    (push '("<=" . ?≤) prettify-symbols-alist)
+    (push '(">=" . ?≥) prettify-symbols-alist)
+    (push '("->" . ?→) prettify-symbols-alist)
+    (push '("<-" . ?←) prettify-symbols-alist)
+    ;; (push '("do" . ?{) prettify-symbols-alist)
+    ;; (push '("end" . ?}) prettify-symbols-alist)
+    ;; (push '("def" . ?Λ) prettify-symbols-alist)
+    ;; (push '("defp" . ?λ) prettify-symbols-alist)
+    ;; (push '("defmodule" . ?Ω) prettify-symbols-alist)
+    (prettify-symbols-mode t)
+    (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
+    (company-mode 1))
+
+  (use-package elixir-mode
     :ensure t
     :config
-    (setq alchemist-mix-command "/usr/bin/mix")
-    (setq alchemist-goto-erlang-source-dir "/usr/src/erlang")
-    (setq alchemist-goto-elixir-source-dir "/usr/src/elixir/")
-    (add-hook 'elixir-mode-hook
-          (lambda ()
-              (push '("|>" . ?▸) prettify-symbols-alist)
-              (push '("<<" . ?«) prettify-symbols-alist)
-              (push '(">>" . ?») prettify-symbols-alist)
-              (push '("<=" . ?≤) prettify-symbols-alist)
-              (push '(">=" . ?≥) prettify-symbols-alist)
-              (push '("->" . ?→) prettify-symbols-alist)
-              (push '("<-" . ?←) prettify-symbols-alist)
-              ;; (push '("do" . ?{) prettify-symbols-alist)
-              ;; (push '("end" . ?}) prettify-symbols-alist)
-              ;; (push '("def" . ?Λ) prettify-symbols-alist)
-              ;; (push '("defp" . ?λ) prettify-symbols-alist)
-              ;; (push '("defmodule" . ?Ω) prettify-symbols-alist)
-              (prettify-symbols-mode t)
-              (define-key elixir-mode-map (kbd "M-m f") 'elixir-format)
-              (define-key erlang-mode-map (kbd "M-,") 'alchemist-goto-jump-back)
-              (alchemist-mode 1)
-              (company-mode 1))))
+    (add-hook 'elixir-mode-hook 'init-elixir-mode))
 
+  (progn (add-to-list 'exec-path "~/.emacs.d/elixir-ls") (lsp))
 #+END_SRC
 ** erlang
 #+BEGIN_SRC emacs-lisp
