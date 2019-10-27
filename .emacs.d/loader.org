@@ -41,6 +41,7 @@
 #+END_SRC
 * GUI
 #+BEGIN_SRC emacs-lisp
+  (setq custom--inhibit-theme-enable nil)
   (use-package darcula-theme :ensure t)
   (tool-bar-mode -1)
   (set-frame-font "Inconsolata-8")
