@@ -414,53 +414,55 @@ for ribbon and windmove compatibility
 #+END_SRC
 * lsp-mode
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package eglot
-  ;;   :ensure t
-  ;;   :diminish
-  ;;   flymake-mode)
-  (use-package lsp-mode
-    :ensure t
-    :bind (("M-m r s" . lsp-rename))
-    :hook
-    (js2-mode . lsp)
-    (typescript-mode . lsp)
-    (erlang-mode . lsp)
-    (elixir-mode . lsp)
-    :diminish
-    flymake-mode
-    :commands lsp
-    :config
-    (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls"))
+    ;; (use-package eglot
+    ;;   :ensure t
+    ;;   :diminish
+    ;;   flymake-mode)
+    (use-package lsp-mode
+      :ensure t
+      :bind (("M-m r s" . lsp-rename))
+      :hook
+      (js2-mode . lsp)
+      (typescript-mode . lsp)
+      (erlang-mode . lsp)
+      (elixir-mode . lsp)
+      (css-mode . lsp)
+      (html-mode .lsp)
+      :diminish
+      flymake-mode
+      :commands lsp
+      :config
+      (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls"))
 
-  ;; optionally
+    ;; optionally
 
-  (use-package lsp-ui
-    :ensure t
-    :requires lsp-mode flycheck
-    :commands lsp-ui-mode
-    :config
-    (setq lsp-ui-doc-enable t
-          ;; lsp-ui-doc-use-childframe t
-          lsp-ui-doc-position 'at-point
-          lsp-ui-doc-max-width 60
-          ;; lsp-ui-doc-use-webkit t
-          lsp-ui-doc-include-signature t
-          lsp-ui-sideline-enable nil
-          lsp-ui-flycheck-enable t
-          lsp-ui-flycheck-list-position 'right
-          lsp-ui-flycheck-live-reporting t
-          lsp-ui-peek-enable t
-          lsp-ui-peek-list-width 60
-          lsp-ui-peek-peek-height 25)
-    (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+    (use-package lsp-ui
+      :ensure t
+      :requires lsp-mode flycheck
+      :commands lsp-ui-mode
+      :config
+      (setq lsp-ui-doc-enable t
+            ;; lsp-ui-doc-use-childframe t
+            lsp-ui-doc-position 'at-point
+            lsp-ui-doc-max-width 60
+            ;; lsp-ui-doc-use-webkit t
+            lsp-ui-doc-include-signature t
+            lsp-ui-sideline-enable nil
+            lsp-ui-flycheck-enable t
+            lsp-ui-flycheck-list-position 'right
+            lsp-ui-flycheck-live-reporting t
+            lsp-ui-peek-enable t
+            lsp-ui-peek-list-width 60
+            lsp-ui-peek-peek-height 25)
+      (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-  (use-package company-lsp
-    :requires company
-    :commands company-lsp
-    :config
-    (push 'company-lsp company-backends))
+    (use-package company-lsp
+      :requires company
+      :commands company-lsp
+      :config
+      (push 'company-lsp company-backends))
 
-  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+    (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 #+END_SRC
 * company
 #+BEGIN_SRC emacs-lisp
