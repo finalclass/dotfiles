@@ -867,6 +867,7 @@ Create a new frame
     (add-to-list 'auto-mode-alist '("\\.html.eex?\\'" . web-mode))
     (defun my-web-mode-hook ()
       "Hooks for Web mode."
+      (company-mode t)
       (setq web-mode-enable-auto-closing t)
       (setq web-mode-enable-auto-quoting t)
       (setq web-mode-enable-current-element-highlight t)
