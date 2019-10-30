@@ -467,7 +467,8 @@ for ribbon and windmove compatibility
     :requires company
     :commands company-lsp
     :config
-    (push 'company-lsp company-backends))
+    (push 'company-lsp company-backends)
+    (setq company-lsp-enable-snippet t))
 
   (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 #+END_SRC
@@ -480,8 +481,8 @@ for ribbon and windmove compatibility
     :config
     ;; (global-company-mode)
     (custom-set-variables
-     '(company-idle-delay .1)
-     '(company-echo-delay .01)
+     '(company-idle-delay .2)
+     '(company-echo-delay .1)
      ;; '(company-global-modes '(not git-commit-mode org-mode markdown-mode))
      '(company-minimum-prefix-length 1))
 
