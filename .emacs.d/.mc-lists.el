@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         beginning-of-buffer
+        diredp-next-line
         emmet-expand-line
         erlang-electric-semicolon
         helm-projectile-find-file

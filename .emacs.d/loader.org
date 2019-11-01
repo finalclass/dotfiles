@@ -427,7 +427,8 @@ for ribbon and windmove compatibility
     (erlang-mode . lsp)
     (elixir-mode . lsp)
     (css-mode . lsp)
-    (html-mode .lsp)
+    (html-mode . lsp)
+    (elm-mode . lsp)
     :diminish
     flymake-mode
     :commands lsp
