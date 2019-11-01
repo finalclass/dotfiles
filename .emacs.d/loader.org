@@ -427,8 +427,8 @@ for ribbon and windmove compatibility
     (erlang-mode . lsp)
     (elixir-mode . lsp)
     (css-mode . lsp)
-    (html-mode . lsp)
     (elm-mode . lsp)
+    (html-mode . lsp)
     :diminish
     flymake-mode
     :commands lsp
@@ -917,17 +917,19 @@ Create a new frame
 
 ** ELM
 #+BEGIN_SRC emacs-lisp
-  (use-package elm-mode
-    :ensure t
-    :bind (
-           :map elm-mode-map
-           ("M-m f" . elm-mode-format-buffer))
-    :config
-    (setq elm-format-on-save t)
-    (add-to-list 'company-backends 'company-elm)
-    (add-hook 'elm-mode-hook
-              (lambda ()
-                (company-mode +1))))
+    (use-package elm-mode
+      :ensure t
+      :bind (
+             :map elm-mode-map
+             ("M-m f" . elm-mode-format-buffer))
+      :config
+      (setq elm-format-on-save t)
+      (setq lsp-elm-server-install-dir "/home/sel/Documents/finalclass/elm-language-server")
+      (add-hook 'elm-mode-hook
+                (lambda ()
+                  (company-mode +1))))
+
+  
 #+END_SRC
 ** JavaScript
 #+BEGIN_SRC emacs-lisp
