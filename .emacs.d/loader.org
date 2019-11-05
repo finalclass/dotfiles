@@ -433,6 +433,7 @@ for ribbon and windmove compatibility
     flymake-mode
     :commands lsp
     :config
+    (setq lsp-clients-typescript-server-args (list "--stdio" "--tsserver-log-file" "/home/sel/.tsserver.log"))
     (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls")
     (global-set-key (kbd "C-?") 'lsp-describe-thing-at-point))
 

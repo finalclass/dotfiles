@@ -3,7 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-delete-word
         beginning-of-buffer
+        delete-word
         diredp-next-line
         emmet-expand-line
         erlang-electric-semicolon
