@@ -922,7 +922,7 @@ Create a new frame
       :ensure t
       :bind (
              :map elm-mode-map
-             ("M-m f" . elm-mode-format-buffer))
+             ("M-m f" . elm-format-buffer))
       :config
       (setq elm-format-on-save t)
       (setq lsp-elm-server-install-dir "/home/sel/Documents/finalclass/elm-language-server")
