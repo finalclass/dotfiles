@@ -21,6 +21,7 @@
         next-error
         org-beginning-of-line
         org-cycle
+        org-end-of-line
         org-self-insert-command
         org-shiftmetaleft
         org-todo
