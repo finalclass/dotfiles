@@ -410,7 +410,7 @@ for ribbon and windmove compatibility
 #+END_SRC
 * webkit
 #+BEGIN_SRC emacs-lisp
-(setq browse-url-browser-function 'xwidget-webkit-browse-url)
+  ;; (setq browse-url-browser-function 'xwidget-webkit-browse-url)
 #+END_SRC
 * lsp-mode
 #+BEGIN_SRC emacs-lisp
