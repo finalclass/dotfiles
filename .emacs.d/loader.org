@@ -185,6 +185,7 @@ for ribbon and windmove compatibility
   (global-set-key (kbd "C-<down>") (lambda () (interactive) (next-line 5)))
   (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
   (global-set-key (kbd "C-<delete>") 'delete-word)
+  (global-set-key (kbd "M-m o o") 'occur)
 
   (use-package mwim
     :ensure t
