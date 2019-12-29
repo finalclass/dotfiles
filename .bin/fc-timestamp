@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+let ts = process.argv[2];
+
+if (ts < 9577123180) {
+   ts = ts * 1000;
+}
+
+console.log(new Date(ts).toUTCISOString());
+
