@@ -13,6 +13,7 @@
         indent-for-tab-command
         ivy-backward-delete-char
         kill-region
+        magit-refresh
         markdown-cycle
         markdown-exdent-or-delete
         markdown-outdent-or-delete
