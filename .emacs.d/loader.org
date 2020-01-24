@@ -42,11 +42,11 @@
 * GUI
 #+BEGIN_SRC emacs-lisp
   (setq custom--inhibit-theme-enable nil)
-  ;;(use-package darcula-theme :ensure t)
-  (use-package one-themes 
-    :ensure t
-    :init
-    (load-theme 'one-light t))
+  (use-package darcula-theme :ensure t)
+  ;; (use-package one-themes 
+  ;;   :ensure t
+  ;;   :init
+  ;;   (load-theme 'one-light t))
 
   (tool-bar-mode -1)
   (set-frame-font "Inconsolata-8")
