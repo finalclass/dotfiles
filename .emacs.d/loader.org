@@ -425,7 +425,7 @@ for ribbon and windmove compatibility
   :diminish)
 #+END_SRC
 
-//DISABLED #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
   ;; (use-package eglot
   ;;   :ensure t
   ;;   :diminish
@@ -434,7 +434,7 @@ for ribbon and windmove compatibility
     :ensure t
     :bind (("M-m r s" . lsp-rename))
     :hook
-    ;; (js2-mode . lsp)
+    (js2-mode . lsp)
     (typescript-mode . lsp)
     (erlang-mode . lsp)
     (elixir-mode . lsp)
@@ -478,16 +478,16 @@ for ribbon and windmove compatibility
   ;;         lsp-ui-peek-peek-height 25))
     ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-  (use-package company-lsp
-    :requires company
-    :commands company-lsp
-    :config
-    (push 'company-lsp company-backends))
-
-  (setq company-lsp-enable-snippet nil)
-  (setq lsp-enable-snippet nil)
-
-  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+  ;;(use-package company-lsp
+  ;;  :requires company
+  ;;  :commands company-lsp
+  ;;  :config
+  ;;  (push 'company-lsp company-backends))
+;;
+;;  (setq company-lsp-enable-snippet nil)
+;;  (setq lsp-enable-snippet nil)
+;;
+;;  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 #+END_SRC
 * company
 #+BEGIN_SRC emacs-lisp
@@ -852,7 +852,7 @@ Create a new frame
     (add-hook 'elixir-mode-hook 'init-elixir-mode)
     (add-hook 'elixir-mode-hook 'eglot-ensure))
 
-  (progn (add-to-list 'exec-path "~/.emacs.d/elixir-ls") (lsp))
+;;  (progn (add-to-list 'exec-path "~/.emacs.d/elixir-ls") (lsp))
 #+END_SRC
 ** erlang
 #+BEGIN_SRC emacs-lisp
@@ -942,7 +942,7 @@ Create a new frame
              ("M-m f" . elm-format-buffer))
       :config
       (setq elm-format-on-save t)
-      (setq lsp-elm-server-install-dir "/home/sel/Documents/finalclass/elm-language-server")
+      ;; (setq lsp-elm-server-install-dir "/home/sel/Documents/finalclass/elm-language-server")
       (with-eval-after-load 'company
         (add-to-list 'company-backends 'company-elm))
       (add-hook 'elm-mode-hook
@@ -983,7 +983,7 @@ Create a new frame
                 (prettify-symbols-mode t)
                 (flycheck-mode t)
                 (company-mode t)
-                (eglot-ensure)
+                ;;(eglot-ensure)
                 ))
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
