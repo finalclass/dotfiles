@@ -420,6 +420,12 @@ for ribbon and windmove compatibility
 #+END_SRC
 * lsp-mode
 #+BEGIN_SRC emacs-lisp
+(use-package eglot
+  :ensure t
+  :diminish)
+#+END_SRC
+
+//DISABLED #+BEGIN_SRC emacs-lisp
   ;; (use-package eglot
   ;;   :ensure t
   ;;   :diminish
@@ -505,6 +511,10 @@ for ribbon and windmove compatibility
    '(company-echo-delay 0)
    '(company-global-modes '(not git-commit-mode))
    '(company-minimum-prefix-length 1))
+
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
 #+END_SRC
 
 * modeline
@@ -839,7 +849,8 @@ Create a new frame
   (use-package elixir-mode
     :ensure t
     :config
-    (add-hook 'elixir-mode-hook 'init-elixir-mode))
+    (add-hook 'elixir-mode-hook 'init-elixir-mode)
+    (add-hook 'elixir-mode-hook 'eglot-ensure))
 
   (progn (add-to-list 'exec-path "~/.emacs.d/elixir-ls") (lsp))
 #+END_SRC
@@ -972,6 +983,7 @@ Create a new frame
                 (prettify-symbols-mode t)
                 (flycheck-mode t)
                 (company-mode t)
+                (eglot-ensure)
                 ))
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
