@@ -47,6 +47,9 @@
     "prettier.bracketSpacing": true,
     "editor.minimap.enabled": false,
     "workbench.colorCustomizations": {},
+    "[javascript]": {
+
+    },
     // "editor.fontFamily": "DejaVu Sans Code",
     // "editor.fontLigatures": true
 }
