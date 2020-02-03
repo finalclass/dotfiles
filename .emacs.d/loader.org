@@ -420,74 +420,64 @@ for ribbon and windmove compatibility
 #+END_SRC
 * lsp-mode
 #+BEGIN_SRC emacs-lisp
-(use-package eglot
-  :ensure t
-  :diminish)
-#+END_SRC
+    (use-package lsp-mode
+      :ensure t
+      :bind (("M-m r s" . lsp-rename))
+      :hook
+      (js2-mode . lsp)
+      (typescript-mode . lsp)
+      (erlang-mode . lsp)
+      (elixir-mode . lsp)
+      (css-mode . lsp)
+      (elm-mode . lsp)
+      (html-mode . lsp)
+      :diminish
+      flymake-mode
+      :commands lsp
+      :config
+      (setq lsp-clients-typescript-server-args (list "--stdio" "--tsserver-log-file" "/home/sel/.tsserver.log"))
+      (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls")
+      (global-set-key (kbd "C-?") 'lsp-describe-thing-at-point))
 
-#+BEGIN_SRC emacs-lisp
-  ;; (use-package eglot
-  ;;   :ensure t
-  ;;   :diminish
-  ;;   flymake-mode)
-  (use-package lsp-mode
-    :ensure t
-    :bind (("M-m r s" . lsp-rename))
-    :hook
-    (js2-mode . lsp)
-    (typescript-mode . lsp)
-    (erlang-mode . lsp)
-    (elixir-mode . lsp)
-    (css-mode . lsp)
-    (elm-mode . lsp)
-    (html-mode . lsp)
-    :diminish
-    flymake-mode
-    :commands lsp
-    :config
-    (setq lsp-clients-typescript-server-args (list "--stdio" "--tsserver-log-file" "/home/sel/.tsserver.log"))
-    (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls")
-    (global-set-key (kbd "C-?") 'lsp-describe-thing-at-point))
+    ;; optionally
 
-  ;; optionally
+    (defun lsp-ui-doc-trigger ()
+      (interactive)
+      (if (lsp-ui-doc--visible-p)
+          (lsp-ui-doc-hide)
+        (lsp-ui-doc-show)))
 
-  ;; (defun lsp-ui-doc-trigger ()
-  ;;   (interactive)
-  ;;   (if (lsp-ui-doc--visible-p)
-  ;;       (lsp-ui-doc-hide)
-  ;;     (lsp-ui-doc-show)))
+    (use-package lsp-ui
+      :ensure t
+      :requires lsp-mode flycheck
+      :commands lsp-ui-mode
+      :bind (("C-?" . lsp-ui-doc-trigger))
+      :config
+      (setq lsp-ui-doc-enable nil
+            ;; lsp-ui-doc-use-childframe t
+            lsp-ui-doc-position 'at-point
+            lsp-ui-doc-max-width 60
+            ;; lsp-ui-doc-use-webkit t
+            lsp-ui-doc-include-signature t
+            lsp-ui-sideline-enable t
+            lsp-ui-flycheck-enable t
+            lsp-ui-flycheck-list-position 'right
+            lsp-ui-flycheck-live-reporting t
+            lsp-ui-peek-enable t
+            lsp-ui-peek-list-width 60
+            lsp-ui-peek-peek-height 25)
+      (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
-  ;; (use-package lsp-ui
-  ;;   :ensure t
-  ;;   :requires lsp-mode flycheck
-  ;;   :commands lsp-ui-mode
-  ;;   :bind (("C-?" . lsp-ui-doc-trigger))
-  ;;   :config
-  ;;   (setq lsp-ui-doc-enable nil
-  ;;         ;; lsp-ui-doc-use-childframe t
-  ;;         lsp-ui-doc-position 'at-point
-  ;;         lsp-ui-doc-max-width 60
-  ;;         ;; lsp-ui-doc-use-webkit t
-  ;;         lsp-ui-doc-include-signature t
-  ;;         lsp-ui-sideline-enable nil
-  ;;         lsp-ui-flycheck-enable t
-  ;;         lsp-ui-flycheck-list-position 'right
-  ;;         lsp-ui-flycheck-live-reporting t
-  ;;         lsp-ui-peek-enable t
-  ;;         lsp-ui-peek-list-width 60
-  ;;         lsp-ui-peek-peek-height 25))
-    ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+    (use-package company-lsp
+     :requires company
+     :commands company-lsp
+     :config
+     (push 'company-lsp company-backends))
 
-  ;;(use-package company-lsp
-  ;;  :requires company
-  ;;  :commands company-lsp
-  ;;  :config
-  ;;  (push 'company-lsp company-backends))
-;;
-;;  (setq company-lsp-enable-snippet nil)
-;;  (setq lsp-enable-snippet nil)
-;;
-;;  (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+   (setq company-lsp-enable-snippet nil)
+   (setq lsp-enable-snippet nil)
+
+   (use-package helm-lsp :commands helm-lsp-workspace-symbol)
 #+END_SRC
 * company
 #+BEGIN_SRC emacs-lisp
@@ -849,8 +839,8 @@ Create a new frame
   (use-package elixir-mode
     :ensure t
     :config
-    (add-hook 'elixir-mode-hook 'init-elixir-mode)
-    (add-hook 'elixir-mode-hook 'eglot-ensure))
+    ;; (add-hook 'elixir-mode-hook 'eglot-ensure)
+    (add-hook 'elixir-mode-hook 'init-elixir-mode))
 
 ;;  (progn (add-to-list 'exec-path "~/.emacs.d/elixir-ls") (lsp))
 #+END_SRC
@@ -983,7 +973,7 @@ Create a new frame
                 (prettify-symbols-mode t)
                 (flycheck-mode t)
                 (company-mode t)
-                ;;(eglot-ensure)
+                ;; (eglot-ensure)
                 ))
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
