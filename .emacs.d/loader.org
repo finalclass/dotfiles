@@ -436,7 +436,7 @@ for ribbon and windmove compatibility
       :commands lsp
       :config
       (setq lsp-clients-typescript-server-args (list "--stdio" "--tsserver-log-file" "/home/sel/.tsserver.log"))
-      (add-to-list 'exec-path "/home/sel/.emacs.d/elixir-ls")
+      (setq lsp-clients-elixir-server-executable "/home/sel/Documents/aur/elixir-ls/release/erl22/language_server.sh")
       (global-set-key (kbd "C-?") 'lsp-describe-thing-at-point))
 
     ;; optionally

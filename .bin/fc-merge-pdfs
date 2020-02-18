@@ -1,0 +1,9 @@
+#!/bin/bash
+
+first_args="${@: 1:$#-1}"
+last_arg="${@: -1}"
+
+echo $first_args
+echo $last_arg
+
+pdftk $first_args cat output $last_arg
