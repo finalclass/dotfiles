@@ -26,7 +26,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\w$(__git_ps1 " (%s)")\$ '
 export EDITOR="emacsclient -c -a emacs"
 
-export BACKEND_CONF=/home/sel/Documents/spotme/devnode/backend-devnode.json
+export BACKEND_CONF=/home/sel/Documents/spotme/backend/conf/backend-devnode.json
 export DEVNODE=1
 export GOROOT=/usr/lib/go           
 export GOPATH=~/Documents/go/src
