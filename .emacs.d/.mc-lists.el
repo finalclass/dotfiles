@@ -44,6 +44,7 @@
         scroll-down-line
         scroll-up-line
         wdired-finish-edit
+        yafolding-toggle-element
         yaml-electric-backspace
         yaml-electric-dash-and-dot
         ))

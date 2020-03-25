@@ -11,6 +11,7 @@ alias grep='grep --color'
 alias skype="skype"
 alias dc="docker-compose"
 alias ec="emacsclient -c -n"
+alias tree="tree --dirsfirst"
 
 source ~/.bin/git-completion.bash
 source ~/.bin/elixir-completion.bash
