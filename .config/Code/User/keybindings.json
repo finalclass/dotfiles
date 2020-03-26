@@ -1,6 +1,10 @@
 // Place your key bindings in this file to overwrite the defaults
 [
     {
+        "key": "ctrl+e",
+        "command": "extension.file-picker.openFileRelativeToOpenedFile"
+    },
+    {
         "key": "alt+m e",
         "command": "commandId",
         "when": "workbench.files.action.showActiveFileInExplorer"
