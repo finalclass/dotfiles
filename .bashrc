@@ -12,6 +12,7 @@ alias skype="skype"
 alias dc="docker-compose"
 alias ec="emacsclient -c -n"
 alias tree="tree --dirsfirst"
+alias npm-insecure="NODE_TLS_REJECT_UNAUTHORIZED=0 npm"
 
 source ~/.bin/git-completion.bash
 source ~/.bin/elixir-completion.bash
