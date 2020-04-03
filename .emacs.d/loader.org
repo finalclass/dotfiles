@@ -507,6 +507,13 @@ for ribbon and windmove compatibility
   :hook (company-mode . company-box-mode))
 #+END_SRC
 
+* git-gutter
+#+BEGIN_SRC emacs-lisp
+(use-package git-gutter
+  :ensure t
+  :config
+  (global-git-gutter-mode +1))
+#+END_SRC
 * modeline
 #+BEGIN_SRC emacs-lisp
 #+END_SRC
