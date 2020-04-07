@@ -221,6 +221,9 @@ bar {
 
 # exec_always feh --bg-scale ~/Media/wallup-27135.jpg
 
+# this is for unclutter to work properly
+focus_follows_mouse no
+
 exec_always fc-auto-xps13-displays
 
 # exec code
@@ -229,3 +232,4 @@ exec brave
 exec emacs
 exec blueberry-tray
 exec --no-startup-id dunst
+exec unclutter -grab
