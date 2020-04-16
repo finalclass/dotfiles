@@ -49,10 +49,15 @@
   ;;   (load-theme 'one-light t))
 
   (tool-bar-mode -1)
-  (set-frame-font "Inconsolata-8")
+  (set-frame-font "SourceCode Pro-8")
   (add-to-list 'default-frame-alist
-               '(font . "Inconsolata-8"))
-  ;; (mapc
+                '(font . "SourceCode Pro-8"))
+  ;; (set-frame-font "Inconsolata-8")
+  ;; (
+  ;; add-to-list 'default-frame-alist
+  ;;              '(font . "Inconsolata-8"))
+  ;; ;
+                                          ; (mapc
   ;;  (lambda (face)
   ;;    (set-face-attribute face nil :weight 'normal))
   ;;  (face-list))
