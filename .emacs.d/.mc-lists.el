@@ -31,6 +31,7 @@
         search-forward
         smex
         swiper
+        typescript-insert-and-autoconvert-to-template
         typescript-insert-and-indent
         ))
 
@@ -39,6 +40,7 @@
         fc-deploy
         handle-switch-frame
         ido-find-file
+        mouse-set-region
         new-frame
         org-return-indent
         scroll-down-line
