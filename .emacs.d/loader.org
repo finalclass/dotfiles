@@ -73,6 +73,17 @@
   (menu-bar-mode -1)
   (global-set-key (kbd "M-m k") 'revert-buffer)
 #+END_SRC
+* Format
+#+BEGIN_SRC emacs-lisp
+  
+(defun format-line ()
+"Formats line and goes to line below"
+(interactive)
+(indent-for-tab-command)
+(next-line))
+
+(global-set-key (kbd "C-\\") 'format-line)
+#+END_SRC
 * key-chord
 
 Key chord let's use bind commends to two keys pressed simoultanously.
