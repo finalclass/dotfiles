@@ -20,6 +20,10 @@
  '(company-minimum-prefix-length 1)
  '(custom-safe-themes
    '("3d5720f488f2ed54dd4e40e9252da2912110948366a16aef503f3e9e7dfe4915" default))
+ '(dired-hide-details-hide-information-lines nil)
+ '(dired-listing-switches "-alh")
+ '(dired-use-ls-dired t)
+ '(diredp-hide-details-initially-flag nil)
  '(edts-inhibit-package-check t)
  '(js-indent-level 4)
  '(js2-auto-indent-p t)

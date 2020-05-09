@@ -402,14 +402,19 @@ for ribbon and windmove compatibility
       (set-buffer-modified-p nil)))
 
   (defadvice dired-readin
-      (after dired-after-updating-hook first () activate)
+    (after dired-after-updating-hook first () activate)
     "Sort dired listings with directories first before adding marks."
     (mydired-sort))
 
-    (require 'dired+)
+  (setq dired-listing-switches "-alh")
+  (require 'dired+)
+  (setq diredp-hide-details-initially-flag nil)
+  (setq diredp-hide-details-propagate-flag nil)
+
 
   (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
   (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file
+  (define-key dired-mode-map (kbd ",") 'dired-hide-details-mode)
 
 #+END_SRC
 * recent files
