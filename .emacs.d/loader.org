@@ -408,9 +408,6 @@ for ribbon and windmove compatibility
 
   (setq dired-listing-switches "-alh")
   (require 'dired+)
-  (setq diredp-hide-details-initially-flag nil)
-  (setq diredp-hide-details-propagate-flag nil)
-
 
   (define-key dired-mode-map [C-up] ()) ; previously was set to 'diredp-visit-previous-file
   (define-key dired-mode-map [C-down] ()) ; previously was set to 'diredp-visit-next-file
