@@ -983,7 +983,33 @@ Create a new frame
      '(js2-include-node-externs t)
      '(js2-strict-trailing-comma-warning nil))
     (setq-default indent-tabs-mode nil)
-
+  
+    ;; Get rid of extraneous warnings from js2-mode when using chai test library, e.g.
+    ;;          expect(o.loaded).to.be.false;
+    ;; triggers "Code has no side effect"
+    ;;
+    ;; This is just a workaround: such messages will be removed for the whole file.
+  
+    (defun rr-js2-tests-filter-warnings ()
+      (setq js2-parsed-warnings
+            (let (rslt)
+              (dolist (e js2-parsed-warnings (reverse rslt))
+                (when (not (string= (caar e) "msg.no.side.effects"))
+                  (setq rslt (cons (caar e) rslt))
+                  ))
+              ))
+      )
+  
+    (add-hook 'js2-mode-hook
+              (lambda ()
+                (when (or
+                       (string-match-p "/tests?/.*\\.js$" (buffer-file-name))
+                       (string-match-p "\\.spec\\.js$" (buffer-file-name))
+                       ))
+                (add-hook 'js2-post-parse-callbacks 'rr-js2-tests-filter-warnings)
+                )
+              )
+  
     (add-hook 'js-mode-hook
               (lambda ()
                 (push '("function" . ?λ) prettify-symbols-alist)
