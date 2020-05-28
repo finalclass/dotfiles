@@ -624,21 +624,20 @@ Create a new frame
 ** Indent after yank
 
 #+BEGIN_SRC emacs-lisp
-  (dolist (command '(yank yank-pop))
-    (eval `(defadvice ,command (after indent-region activate)
-             (and (not current-prefix-arg)
-                  (member major-mode '(emacs-lisp-mode lisp-mode
-                                                       clojure-mode    scheme-mode
-                                                       haskell-mode    ruby-mode
-                                                       rspec-mode      python-mode
-                                                       c-mode          c++-mode
-                                                       objc-mode       latex-mode
-                                                       erlang-mode
-                                                       js2-mode js-mode js3-mode html-mode css-mode
-                                                       plain-tex-mode))
-                  (let ((mark-even-if-inactive transient-mark-mode))
-                    (indent-region (region-beginning) (region-end) nil))))))
-
+  ;; (dolist (command '(yank yank-pop))
+  ;;   (eval `(defadvice ,command (after indent-region activate)
+  ;;            (and (not current-prefix-arg)
+  ;;                 (member major-mode '(emacs-lisp-mode lisp-mode
+  ;;                                                      clojure-mode    scheme-mode
+  ;;                                                      haskell-mode    ruby-mode
+  ;;                                                      rspec-mode      python-mode
+  ;;                                                      c-mode          c++-mode
+  ;;                                                      objc-mode       latex-mode
+  ;;                                                      erlang-mode
+  ;;                                                      js2-mode js-mode js3-mode html-mode css-mode
+  ;;                                                      plain-tex-mode))
+  ;;                 (let ((mark-even-if-inactive transient-mark-mode))
+  ;;                   (indent-region (region-beginning) (region-end) nil))))))
 #+END_SRC
 
 ** Remove what's selected on start typing
@@ -1006,19 +1005,6 @@ Create a new frame
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(json-jsonlist))))
-
-  (use-package prettier-js
-    :ensure t
-    :bind (
-           :map js-mode-map
-           ("M-m f" . prettier-js))
-    :config
-    (setq prettier-js-args '(
-                             "--tab-width" "4"
-                             "--single-quote"
-                             "--bracket-spacing" "true"
-                             "--arrow-parens" "avoid"
-                             )))
 #+END_SRC
 ** JSON
 #+BEGIN_SRC emacs-lisp
