@@ -7,6 +7,7 @@
         beginning-of-buffer
         delete-word
         diredp-next-line
+        diredp-previous-line
         emmet-expand-line
         erlang-electric-semicolon
         helm-projectile-find-file
