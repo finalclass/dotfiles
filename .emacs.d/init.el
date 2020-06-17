@@ -36,6 +36,7 @@
  '(js2-mode-show-parse-errors nil)
  '(js2-mode-show-strict-warnings t)
  '(js2-strict-inconsistent-return-warning nil)
+ '(js2-strict-missing-semi-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(js2-toggle-warnings-and-errors nil)
  '(org-agenda-files '("~/todo-home.org"))
