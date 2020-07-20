@@ -123,6 +123,7 @@ set $wsCode "0:z:"
 set $wsBrowsers "1:"
 set $ws2 "2:"
 set $wsEmacs "3:E"
+set $wsServer "0:t:"
 set $ws4 "4:"
 set $ws5 "5:"
 set $ws6 "6:"
@@ -134,6 +135,7 @@ set $ws10 "10:"
 # switch to workspace
 bindsym $mod+x workspace $wsTerminals
 bindsym $mod+z workspace $wsCode
+bindsym $mod+t workspace $wsServer
 
 bindsym $mod+1 workspace $wsBrowsers
 bindsym $mod+2 workspace $ws2
@@ -149,6 +151,7 @@ bindsym $mod+0 workspace $ws10
 # move focused container to workspace
 bindsym $mod+Shift+x move container to workspace $wsTerminals
 bindsym $mod+Shift+z move container to workspace $wsCode
+bindsym $mod+Shift+t move container to workspace $wsServer
 
 bindsym $mod+Shift+1 move container to workspace $wsBrowsers
 bindsym $mod+Shift+2 move container to workspace $ws2
