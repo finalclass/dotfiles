@@ -14,7 +14,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.3",
     "cradle": "^0.7.1",
-    "debug": "^2.6.3",
+    "debug": "^3.1.0",
     "exec-sync": "^0.1.6",
     "jshint": "^2.9.2",
     "nano": "^6.1.5",
